@@ -4,9 +4,12 @@ from django.shortcuts import render
 
 def home(request):
 
-
-    return render(request, 'tours/home.html', {})
+    context = {}
+    return render(request, "tours/home.html", context)
 
 
 def about_us(request):
-    pass
+
+    context = {}
+
+    return render(request, "tours/about_us.html", context)
