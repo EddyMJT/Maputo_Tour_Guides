@@ -1,0 +1,143 @@
+
+body{
+
+    padding-top: 90px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    background-color: #e1e1e1;
+    width: 100%;
+}
+
+/* sets the attributes of navbar */
+.navbar-custom{
+
+    height: 90px;
+    padding-top: 8px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-color: transparent;
+    font-size: 16px;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+}
+
+/* sets the attributes of the logo/brand */
+.navbar-brand{
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 190px;
+    height: 70px;
+    overflow: hidden;
+
+}
+
+/* attributes of links */
+.navbar-nav{
+    padding-top: 12px;
+}
+
+/* changes color of link text */
+.navbar-custom .navbar-nav > li > a{
+    color: green;
+    margin-right: 18px;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: orange;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.navbar-custom .navbar-nav > .active > a:hover {
+    color: orange;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+/* Change text color and background color of navbar links on hover */
+.navbar-custom .navbar-nav > li > a:hover {
+    color: #0ed00e;
+    background-color: none;
+}
+
+
+
+
+.img-logo{
+
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+.page-body{
+    margin-top: 90px;
+    position: fixed;
+}
+
+
+
+.navbar .navbar-toggle:not(.collapsed) {
+    background-color: green; /* Change this to the color you want */
+    border-color: green; /* Optional: Change border color to match */
+
+}
+
+.navbar .navbar-toggle{
+    background-color: green; /* Change this to the color you want */
+    border-color: green; /* Optional: Change border color to match */
+    margin-top: 20px;
+
+}
+
+.navbar-toggle .icon-bar {
+    background-color: black; /* Change to the color you prefer */
+    color: green;
+}
+
+.navbar-toggle:not(.collapsed) .icon-bar {
+    background-color: black; /* Change to the color you prefer */
+}
+
+
+/* Force navbar to collapse below 1279px */
+@media (max-width: 1281px) {
+    .navbar-header .navbar-toggle {
+        display: block; /* Shows the toggle button */
+        position: fixed;
+        right: 20px;
+    }
+    .navbar-collapse.collapse {
+        display: none !important; /* Hide navbar items by default */
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important; /* Display items when navbar is expanded */
+        text-align: center;
+    }
+
+    .navbar-custom{
+        padding-left: 2px;
+        padding-right: 2px;
+        background-color: rgba(0, 0, 0, 0.98);
+    }
+
+        .navbar-collapse {
+        background-color: rgba(0, 0, 0, 0.95); /* Or any color you prefer */
+        position: fixed;
+        top: 90;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999; /* Make sure it stays on top */
+       overflow-y: auto; /* If content is too long, it will scroll */
+    }
+
+    .navbar-nav > li {
+        text-align: center;
+    }
+
+}
+
+

@@ -1,0 +1,159 @@
+
+.about-us-img{
+
+    height: 800px;
+    background-image: url("../images/Guides-MTG.jpg");
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.guides{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #fffff1, #ffffff);
+    width: 100%;
+}
+
+
+.meet-your-guides{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-top: 60px;
+
+}
+
+.au-border{
+
+    border-bottom-style: solid;
+    border-bottom-color: orange;
+    border-bottom-width: 4px;
+    margin: 40px;
+    margin-left:600px;
+    margin-right:600px;
+
+}
+
+.au-guides-row{
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 100px 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+
+}
+
+
+.guides-info{
+
+    height: 300px;
+    border-radius: 40px;
+}
+
+
+.au-guide-info{
+
+    color: #9e9e9e;
+    background-color: none;
+
+}
+
+
+.guide-name{
+    display: absolute;
+    color: lightblue;
+
+    top: 300px;
+    left: 100px;
+    background-color: black;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 46px;
+}
+
+
+
+.buttons-more-reviews{
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+/****************************************************************************
+********************* MEDIA QUERIES FOR MOBILE VERSION *********************
+****************************************************************************/
+
+
+@media(max-width: 540px){
+
+.about-us-img{
+
+    height: 100%;
+    background-image: url("../images/Guides-MTG.jpg");
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+
+
+.meet-your-guides{
+    font-size: 28px;
+}
+
+.au-border{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.au-guides-row{
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 60px 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+
+.guides-info{
+
+    height: 200px;
+    border-radius: 40px;
+    width: 90%;
+}
+
+
+.au-guide-info{
+
+    color: #9e9e9e;
+    background-color: none;
+    margin-top: 4px;
+
+}
+
+
+.buttons-more-reviews{
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+}
+
+@media(min-width: 451px) and (max-width: 1200px){
+
+.au-guides-row{
+
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+}

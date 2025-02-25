@@ -1,0 +1,70 @@
+
+.nt-header{
+    margin-left: 160px;
+    margin-top: 160px;
+}
+
+.nt-form-frame{
+
+    margin: 100px;
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.nt-form-row{
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: lightgray;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-left: 60px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.nt-rows-separator{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: lightgray;
+}
+
+.nt-submit-btn{
+    margin: 100px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+/*********************************************************************
+********** MEDIA QUERIES FOR MOBILE VERSION ***************************
+*********************************************************************/
+
+@media screen and (max-width: 540px){
+
+
+.nt-header{
+    margin-left: 10px;
+}
+
+
+.nt-form-frame{
+    margin: 10px;
+}
+
+.nt-form-row{
+    margin-left: 10px;
+    flex-direction: column;
+}
+
+.nt-submit-btn{
+    margin: 10px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+}

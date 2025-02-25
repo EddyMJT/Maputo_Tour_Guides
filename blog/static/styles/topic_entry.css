@@ -1,0 +1,142 @@
+
+
+.te-container{
+    background-color: white;
+    margin-top:0px;
+    padding-top: 90px;
+    margin-right: 0px;
+}
+
+.te-topic-title-separator{
+    margin-left: 700px;
+    margin-right: 700px;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-bottom-color: orange;
+}
+
+.te-topic-entry-separator{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-bottom-color: lightgray;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 40px;
+
+}
+
+.te-entry-image-section{
+    display:flex;
+    flex-direction: row;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 40px;
+    padding-bottom: 100px;
+}
+
+.te-entry-image-section-MV{
+
+    display: none;
+
+
+}
+
+.te-entry-section{
+    flex: 3;
+    margin-right: 10px;
+    text-align: justify;
+}
+
+
+.te-image-section{
+    flex: 2;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.more-blog-posts-section{
+    background-color: black;
+    color: white;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+}
+/***********************************************************************************
+********************** MEDIA QUERIES FOR MOBILE VERSION ****************************
+***********************************************************************************/
+
+@media screen and (max-width: 770px){
+
+.te-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.te-topic-title-separator{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.te-topic-entry-separator{
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.entry-title{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-text: center;
+
+}
+
+.te-entry-image-section{
+    display: none;
+}
+
+.te-entry-image-section-MV{
+    display:flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.te-image-section{
+    flex: 1;
+    display: flex;
+    margin-left: 0px;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.te-entry-section{
+    flex: 3;
+    margin-right: 0px;
+    margin-top: 40px;
+    text-align: justify;
+    height: 100%;
+}
+
+
+
+
+.more-blog-posts-section{
+    display: none;
+}
+
+}

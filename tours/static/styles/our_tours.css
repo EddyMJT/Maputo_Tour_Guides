@@ -1,0 +1,349 @@
+
+
+
+.ot-button-book{
+
+    width: 300px;
+    height: 80px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 30px;
+    text-align: center;
+    text-decoration: none;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    position: fixed;
+    left: 16px;
+    top: 100px;
+}
+
+.ot-button-book:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+.ot-sidebar{
+
+    background-color: white;
+    position: fixed;
+    top: 206;
+    bottom: 16px;
+    left: 16px;
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0px;
+    padding-bottom: 90px;
+}
+
+.ot-tours-menu{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0px;
+    padding-bottom: 90px;
+
+}
+
+.ot-button-link{
+
+    width: 140px;
+    height: 40px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.ot-button-link:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+.our-packages{
+
+    margin-top: 90px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    border-bottom-style: solid;
+    border-bottom-width: 8px;
+    border-bottom-color: orange;
+    width: 400px;
+}
+
+
+.ot-tours{
+
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 120px;
+    padding-right: 120px;
+     margin-left: 210px;
+    margin-bottom: 100px;
+}
+
+.ot-mnp{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ot-tours-row{
+
+    flex: 1;
+    height: 340px;
+    margin: 4px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.ot-tour{
+
+    margin: 6px;
+
+    border-style: none;
+    border-width: 2px;
+    border-radius: 40px;
+    height: 400px;
+    width: 380px;
+
+
+
+}
+
+
+
+.ot-tour-photo{
+
+    height: 200px;
+    border-style: none;
+    border-radius: 40px;
+}
+
+.ot-tour-img{
+    width: 100%;
+    height: 100%;
+}
+
+.ot-tour-description{
+
+    background-color: white;
+    height: 200px;
+
+
+}
+
+.ot-button-tour{
+
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    padding: 4px;
+    margin: 4px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #A89A13;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.ot-button-tour:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: black;
+}
+
+
+.enroll-guide-button{
+
+    margin-left: 490px;
+
+}
+
+
+.ot-footer{
+
+    margin-left: 320px;
+    background-color: #333333;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2px 30px;
+    padding: 20px;
+
+}
+
+.ot-more-tours{
+
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: white;
+}
+
+.ot-links{
+
+    color: white;
+    text-decoration: none;
+}
+
+.ot-links:hover{
+    color: white;
+
+}
+
+
+
+/*****************************************************************************************
+**************** MEDIA QUERIES FOR MOBILE VERSION ************************
+************************************************************************/
+
+@media screen and (max-width: 541px){
+
+.ot-button-book{
+
+    width: 350px;
+    height: 60px;
+    padding: 0px 0px;
+    position: relative;
+    left: 0;
+    top: none;
+
+}
+
+.ot-sidebar{
+
+    top: 100;
+    bottom: none;
+    left: 0;
+    position: relative;
+    width: 350px;
+    height: 240px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 100px;
+}
+
+.ot-tours-menu{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 2px 6px;
+}
+
+.ot-tours{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 100px;
+}
+
+.our-packages{
+    width: 300px;
+    margin-top: 40px;
+}
+
+.ot-tours-row{
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.ot-tour{
+    width: 95%;
+}
+
+.ot-footer{
+    margin-left: 0px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px 10px;
+    padding: 10px;
+
+}
+}
+
+/**************************** TABLET VIEWS ******************
+************************************************************
+************************************************************/
+
+@media(min-width: 541px) and (max-width: 1280px){
+
+.ot-button-book{
+
+    width: 95%;
+    height: 60px;
+    padding: 0px 0px;
+    position: relative;
+    left: 0;
+    top: none;
+
+}
+
+.ot-sidebar{
+
+    top: 100;
+    bottom: none;
+    left: 0;
+    position: relative;
+    width: 95%;
+    height: 30%;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 100px;
+}
+
+.ot-tours-menu{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 2px 6px;
+}
+
+.ot-tours{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 100px;
+}
+
+.our-packages{
+    width: 300px;
+    margin-top: 40px;
+}
+
+.ot-tours-row{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.ot-tour{
+    width: 95%;
+}
+
+.ot-footer{
+    margin-left: 0px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px 10px;
+    padding: 10px;
+}
+}

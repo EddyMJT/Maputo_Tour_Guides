@@ -1,0 +1,34 @@
+.topic-intro{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-bottom-style: solid;
+    border-bottom-color: lightgray;
+    border-bottom-width: 2px;
+}
+
+
+
+/***********************************************************************************
+********************** MEDIA QUERIES FOR MOBILE VERSION ****************************
+***********************************************************************************/
+
+@media screen and (max-width: 580px){
+
+
+.topic-intro{
+
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+}

@@ -1,10 +1,382 @@
-<!DOCTYPE html>
+{% load bootstrap3 %}
+
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<b>Home Page</b>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial scale=1">
+
+		<title>Maputo Tour Guides</title>
+
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+
+		{% load static %}
+
+		<link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+
+		<link rel="icon" href="data:,">
+	</head>
+
+
+
+	<body>
+
+		<div ><a href="https://web.whatsapp.com/"><img class="whatssap-icon" src="static/images/w-logo.png"></a></div>
+
+		<!-- navagation bar and background image -->
+		<div class="first-section">
+			 <!-- Static navbar -->
+				     <!-- Static navbar -->
+
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- Collapsed button for mobile view -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- Brand logo -->
+      <a class="navbar-brand" href="{% url 'tours:home' %}">
+        <img class="img-logo" src="/static/images/logo.png" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Collapsible navbar -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="{% if request.path == '/about_us/' %}active{% endif %}">
+          <a href="{% url 'tours:about_us' %}"><strong>ABOUT US</strong></a>
+        </li>
+        <li class="{% if request.path == '/our_tours/' or request.path == '/our_tours/beach_tours/' or request.path == '/our_tours/city_tours/' or request.path == '/our_tours/cultural_tours/' or request.path == '/transfers/'%}active{% endif %}">
+          <a href="{% url 'tours:our_tours' %}"><strong>OUR TOURS</strong></a>
+        </li>
+        <li class="{% if request.path == '/gallery/' %}active{% endif %}">
+          <a href="{% url 'tours:gallery' %}"><strong>GALLERY</strong></a>
+        </li>
+        <li class="{% if request.path == '/reviews/' %}active{% endif %}">
+          <a href="{% url 'tours:reviews' %}"><strong>REVIEWS</strong></a>
+        </li>
+        <li class="{% if request.path == '/blog/posts/' %}active{% endif %}">
+          <a href="{% url 'blog:blog' %}"><strong>BLOG</strong></a>
+        </li>
+        <li class="{% if request.path == '/contacts/' %}active{% endif %}">
+          <a href="{% url 'tours:contacts' %}"><strong>CONTACTS</strong></a>
+        </li>
+
+        {% if user.is_authenticated %}
+          <li><a><strong>logged in, {{user.username}}</strong></a></li>
+		   {% if user.is_superuser %}
+            <li class="{% if request.path == '/users/user_settings/' %}active{% endif %}">
+               <a href="{% url 'users:user_settings' %}"><strong>SETTINGS</strong></a>
+            </li>
+          {% endif %}
+          <li class="{% if request.path == '/users/logout/' %}active{% endif %}">
+            <a href="{% url 'users:logout' %}"><strong>LOGOUT</strong></a>
+          </li>
+        {% else %}
+          <li class="{% if request.path == '/users/login/' %}active{% endif %}">
+            <a href="{% url 'users:login' %}"><strong>LOGIN</strong></a>
+          </li>
+          <li class="{% if request.path == '/users/register/' %}active{% endif %}">
+            <a href="{% url 'users:register' %}"><strong>REGISTER</strong></a>
+          </li>
+        {% endif %}
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
+
+			 <!--  end off static navbar -->
+				<div class="min-price">
+					<div class="price-number">$30*</div>
+					<div class="price-descr">Tours From</div>
+				</div>
+				<div class="we-love-mpt">
+					<p>No one does it better than we do! | We Love Maputo</p>
+				</div>
+		</div>
+
+		<!-- about us section -->
+		<div class="second-section">
+			<center><h3 class="s-s-title">About Maputo Tour Guides</h3></center>
+			<center><p class="s-s-paragraph"><strong>Maputo Tour guides</strong> is a Tour Operator formed by  young
+			Mozambicans who seek to offer unique and exciting experiences
+			to every visitor coming to <a href="https://en.wikipedia.org/wiki/Maputo">Maputo</a>. With a combination of Walking,
+			on wheels tours; in the city and out of the city tours(Safaris
+			and Beach), we have the most varied and exciting options to offer.
+			Before booking any tour read the <a href="{% url 'tours:reviews' %}">reviews</a>  of those who have booked us!</p></center>
+
+			<center><a class="button-link" href="{% url 'tours:about_us' %}">Learn More</a></center>
+		</div>
+
+		<!-- Tours Section -->
+		<div class="third-section">
+
+			<!-- Full day Tours -->
+			<div class="tours_categories">
+				<div class="f-d-t-descrip">
+					<div class="f-d-t-descrip-1">Full day Tours </div> <a class="our-tours" href="{% url 'tours:our_tours' %}"><strong> / </strong> View all Tours</a><strong> / </strong> View all Tours
+				</div>
+				<!-- Test -->
+				<div class="tour-row">
+					{% for tour in fd_tours_list %}
+						<div class="tour-box">
+							<a href="{% url 'tours:tour_info' tour.id tour.slug_title %}">
+								<div class="tour-box-image">
+									<img class="img-tour" src="{{tour.image.url}}">
+									<img class="five-star" src="/static/images/five-star.png">
+								</div>
+							</a>
+							<center>
+								<div class="tour-box-descri">
+									<h3><a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="color: black; font-size: 22px;">{{tour.title}}</a></h3>
+									<p class="tripadvisor-p">
+										<a href="https://www.tripadvisor.com/AttractionProductReview-g293819-d24150592-Maputo_National_Park_Maputo_Special_Reserve_Full_day_Tour-Maputo_Maputo_Province.html">
+										<img class="tripadvisor" src="/static/images/tripadvisor.png"></a>
+										Recommended by 100% of Travellers
+										<a class="book-button" href="{% url 'tours:contacts' %}">Book Now!</a>
+									</p>
+								</div>
+							</center>
+						</div>
+						<!-- </div> -->
+					{% endfor %}
+				</div>
+			</div>
+			<!-- Walking Tours -->
+			<div class="tours_categories">
+				<div class="f-d-t-descrip">
+					<div class="f-d-t-descrip-1">Walking Tours </div><a class="our-tours" href="{% url 'tours:our_tours' %}"><strong> / </strong> View all Tours</a>
+				</div>
+				<!-- Test -->
+				<div class="tour-row">
+					{% for tour in walking_tours_list %}
+						<!-- <div class="tours"> -->
+						<div class="tour-box">
+							<a href="{% url 'tours:tour_info' tour.id tour.slug_title %}">
+								<div class="tour-box-image">
+									<img class="img-tour" src="{{tour.image.url}}">
+									<img class="five-star" src="/static/images/five-star.png">
+								</div>
+							</a>
+							<center>
+								<div class="tour-box-descri">
+									<h3><a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="color: black;">{{tour.title}}</a></h3>
+									<p class="tripadvisor-p">
+										<a href="https://www.tripadvisor.com/AttractionProductReview-g293819-d24150592-Maputo_National_Park_Maputo_Special_Reserve_Full_day_Tour-Maputo_Maputo_Province.html">
+										<img class="tripadvisor" src="/static/images/tripadvisor.png"></a>
+										Recommended by 100% of Travellers
+										<a class="book-button" href="{% url 'tours:contacts' %}">Book Now!</a>
+									</p>
+								</div>
+							</center>
+						</div>
+						<!-- </div> -->
+					{% endfor %}
+				</div>
+			</div>
+			<!-- On Wheels Tours -->
+			<div class="tours_categories">
+				<div class="f-d-t-descrip">
+					<div class="f-d-t-descrip-1">On Wheels Tours </div><a class="our-tours" href="{% url 'tours:our_tours' %}"> <strong> / </strong> View all Tours</a>
+				</div>
+				<!-- Test -->
+				<div class="tour-row">
+					{% for tour in on_wheels_tours_list %}
+						<!-- <div class="tours"> -->
+						<div class="tour-box">
+							<a href="{% url 'tours:tour_info' tour.id tour.slug_title %}">
+								<div class="tour-box-image">
+									<img class="img-tour" src="{{tour.image.url}}">
+									<img class="five-star" src="/static/images/five-star.png">
+								</div>
+							</a>
+							<center>
+								<div class="tour-box-descri">
+									<h3><a href="{% url 'tours:tour_info' tour.id  tour.slug_title %}" style="color: black;">{{tour.title}}</a></h3>
+									<p class="tripadvisor-p">
+										<a href="https://www.tripadvisor.com/AttractionProductReview-g293819-d24150592-Maputo_National_Park_Maputo_Special_Reserve_Full_day_Tour-Maputo_Maputo_Province.html">
+										<img class="tripadvisor" src="/static/images/tripadvisor.png"></a>
+										Recommended by 100% of Travellers
+										<a class="book-button" href="{% url 'tours:contacts' %}">Book Now!</a>
+									</p>
+								</div>
+							</center>
+						</div>
+						<!-- </div> -->
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Begining of carousel -->
+		<section class="fourth-section">
+			<div class="pictures-rolling">
+				<div class="container-1" id="fr">
+					<div class="container">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active"><img src="static/images/caption.jpg" alt="Description 1" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/nyala.jpg" alt="Description 2" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/membene-praia.jpg" alt="Description 3" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca.jpg" alt="Description 5" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-1.jpeg" alt="Description 6" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-12.jpg" alt="Description 7" style="height: 700px; width: 100%;"></div>
+					</div>
+				</div>
+					</div>
+				</div>
+				<div class="container-1" id="sn" >
+				<div class="container">
+				<div id="myCarousel-1" class="carousel slide" data-ride="carousel">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						 <div class="item active"><img src="static/images/caption.jpg" alt="Description 1" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/nyala.jpg" alt="Description 2" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/membene-praia.jpg" alt="Description 3" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca.jpg" alt="Description 5" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-1.jpeg" alt="Description 6" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-12.jpg" alt="Description 7" style="height: 700px; width: 100%;"></div>
+					</div>
+				</div>
+			</div>
+			</div>
+				<div class="container-1" id="th">
+				<div class="container">
+				<div id="myCarousel-2" class="carousel slide" data-ride="carousel">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						 <div class="item active"><img src="static/images/caption.jpg" alt="Description 1" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/nyala.jpg" alt="Description 2" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/membene-praia.jpg" alt="Description 3" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca.jpg" alt="Description 5" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-1.jpeg" alt="Description 6" style="height: 700px; width: 100%;"></div>
+						<div class="item"><img src="static/images/inhaca-12.jpg" alt="Description 7" style="height: 700px; width: 100%;"></div>
+					</div>
+				</div>
+			</div>
+			</div>
+				<!-- Bootstrap JS and jQuery -
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				-->
+			</div>
+		</section>
+		<!-- End of Carousel -->
+
+		<!-- Reviews Section -->
+		<section class="fifth-section">
+			<strong><center><h3 class="s-s-title">Read What People Say About Us...</h3></center></strong>
+
+			<div class="review-rows">
+				{% for review in reviews_list %}
+				<div class="reviews">
+					<div class="reviewer-img"><center><img class="reviewer-photo" src="{{review.reviewer_image.url}}"></center></div>
+					<div class="review">
+						<center><h3 class="reviewer-name">{{review.reviewer_name}}</h3>
+							<p><strong>{{review.title}}</strong></p>
+							<p class="s-s-paragraph-1">{{review.text.html | safe}}</p>
+						</center>
+					</div>
+				</div>
+				{% empty %}
+					No reviews added yet!
+				{% endfor %}
+			</div>
+			<div class="buttons-more-reviews">
+				<a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html" class="button-link">Read More on Tripadvisor</a>
+				<a href="https://www.facebook.com/MaputoTourGuides" class="button-link">Read More on Facebook</a>
+			</div>
+
+		</section>
+
+		<section class="sixth-section">
+
+			<div class="contacts-columns">
+				<div class="contacts">
+					<div class="affordable-tours">AFFORDABLE TOURS</div>
+					<div class="tours-start-from"><center>Tours start from $30</center></div>
+					<div class="contact-info-row">
+						<div class="find-us-here">
+							<center>
+							<h4 style="color: orange;">FIND US HERE</h4>
+							<p>Independence square/</p>
+							<p>Praca da Independence,</p>
+							<p>Maputo City</p>
+							</center>
+						</div>
+						<div class="contacts-info">
+							<center>
+							<h4 style="color:orange;">CONTACT INFO</h4>
+							<P>info@maputotours.net</P>
+							<p>(+258) 82 035 89 67</p>
+							<p>(+258) 84 695 5681</p>
+							</center>
+						</div>
+					</div>
+					<div class="symbols">
+
+						<div class="social-m-symbols">
+
+							<div class="button-social-m" style="margin-right: 8px;">
+								<a href="https://www.facebook.com/MaputoTourGuides">
+								<img src="static/images/fb-logo.png" style="height: 40px; width: 40px;">
+							</a>
+							</div>
+							<div class="button-social-m" style="margin-right: 8px;">
+								<a href="https://www.instagram.com/maputo_tour_guides/" class="button-social-m">
+								<img src="static/images/insta-logo.png" style="height: 40px; width: 40xp;">
+							</a>
+							</div>
+							<div class="button-social-m" style="margin-right: 8px;">
+								<a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html"
+							   class="button-social-m"><img src="static/images/tripadvisor.png" style="height: 40px; width: 40px;"></a>
+							</div>
+
+
+						</div>
+						<div class="more-cem">
+							<div class="more-1000">
+								<h4 style="font-size: 28px; color: orange;">+1000</h4>
+								<p>People Met!</p>
+							</div>
+							<div class="more-1000">
+								<h4 style="font-size: 28px; color: orange;">+1000</h4>
+								<p>Tours Done!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="contacts-1">
+
+					<div>
+						<a href="{% url 'tours:contacts' %}" class="button-link-2">Book Now!</a>
+					</div>
+					<div class="map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14347.86425713117!2d32.5732424!3d-25.9691533!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee69b049178f8a7%3A0x743e934fe8acd2fd!2sPra%C3%A7a%20da%20Independ%C3%AAncia!5e0!3m2!1sen!2smz!4v1706399846950!5m2!1sen!2smz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<section class="footer">
+			<center>Designed by  <a href="https://www.facebook.com/umzero.2023/" style="color: white;" >UmZero</a></center>
+		</section>
+
+	</body>
 </html>
+
+
+
+
+

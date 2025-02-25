@@ -1,0 +1,1425 @@
+body{
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.whatssap-icon{
+
+    position: fixed;
+    top: 400px;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+    z-index: 99;
+}
+
+
+.first-section{
+    margin-top: 0px;
+    color: black;
+    height: 100vh;
+    background-image: url("../images/mts.jpg");
+    background-size: 100% 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    z-index: 101;
+}
+
+
+
+.img-logo{
+
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.min-price{
+
+    position: absolute;
+    left: 40px;
+    top: 70%;
+}
+
+.price-number{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 46px;
+    color: white;
+
+}
+.price-descr{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 26px;
+    color: orange;
+
+}
+
+
+.we-love-mpt{
+
+    height: 50px;
+    width: 750px;
+    background: linear-gradient(to bottom, #96c93d, #00b09b);
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 28px;
+    color: black;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 90%;
+    padding: 4px;
+
+}
+
+.second-section{
+
+    height: 300px;
+    padding-top: 40px;
+    background: linear-gradient(to bottom, #ffffff, #f7f6f4)
+
+
+}
+
+.s-s-title{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+
+
+}
+
+.s-s-paragraph{
+     font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 20px;
+    width: 1400px;
+    font-weight: 700px;
+   }
+
+.button-link{
+
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 30px;
+    text-align: center;
+    text-decoration: none;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+}
+
+.button-link:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: black;
+}
+
+
+.third-section{
+    background: linear-gradient(to bottom, #f7f6f4, #CAF880);
+    align-items: center;
+    padding-bottom: 100px;
+    max-width: 100%;
+}
+
+
+.f-d-t-descrip{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 28px;
+    color: #666666;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.f-d-t-descrip-1{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 28px;
+
+    padding-bottom: 10px;
+    color: #666666;
+
+    border-bottom-style: solid;
+    border-bottom-width: 6px;
+    border-bottom-color: #7CDA24;
+
+
+}
+
+.tours_categories{
+
+    margin-left: 60px;
+    margin-right: 60px;
+    padding-top: 80px;
+
+}
+
+.tour-row{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 60px 10px;
+}
+
+.tours{
+
+    width: 1400px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tour-box{
+
+    width: 460px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.tour-box-image{
+
+
+    background-color: gray;
+    color: green;
+    width: 460px;
+    height: 400px;
+    overflow: hidden;
+
+    border-style: hidden;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+}
+
+.five-star{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 80px;
+    height: 20px;
+}
+
+.tripadvisor{
+
+    bottom: 10px;
+    right: 90px;
+    width: 35px;
+    height: 35px;
+
+}
+
+.tripadvisor-p{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+}
+
+.img-tour{
+
+    width: 100%;
+    height: 100%;;
+}
+
+.tour-box-descri{
+
+    color: black;
+
+
+}
+
+.book-button{
+
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 10px;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.book-button:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: #2980b9;
+}
+
+
+
+.fourth-section{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+.rows{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    height: 400px;
+    margin: 10px;
+}
+
+.t-tour-row{
+
+    width: 1400px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.transfers{
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+}
+
+.transfers-columns{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.transfers-left-column{
+
+
+    margin: 4px;
+    flex: 1;
+    width: 1200px;
+}
+
+.transfers-right-column{
+
+
+    margin: 4px;
+    flex: 1;
+
+}
+
+
+.transfer-dest{
+
+    background-color: white;
+    border-style: none;
+    border-width; 4px;
+    border-radius: 40px;
+
+    margin: 10px;
+    padding: 10px;
+    z-index: 100;
+}
+
+
+.columns{
+    margin: 2px;
+    width: 1100px;
+    height: 400px;
+    background-color: lightblue;
+}
+
+
+.guide-photo{
+    height: 200px;
+    background-color: gray;
+}
+
+
+.pictures-rolling{
+    background-color: black;
+    height: 600px;
+    display: flex;
+    fle-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+.container-1{
+    flex: 1;
+    z-index: 100;
+}
+
+.container{
+       width: 100%;
+       margin: 0;
+       padding: 0;
+}
+
+
+.cem-more{
+
+    height: 70px;
+}
+
+.fifth-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 1000px;
+    background: linear-gradient(to bottom, #ffffff, #dddddd);
+    background-size: 100% 100%;
+    color: black;
+}
+
+
+
+.review-rows{
+
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.reviews{
+
+    margin: 20px;
+
+    width: 400px;
+    height: 700px;
+
+    background:  linear-gradient(to bottom, #fbffea, #fafafa);
+    border-style: solid;
+    border-top: none;
+    border-width: 3px;
+    border-radius: 40px;
+    border-color: green;
+}
+
+
+
+
+.reviewer-img{
+
+    height: 200px;
+
+}
+
+.reviewer-photo{
+
+    height: 200px;
+    width: 200px;
+    border-style: none;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 400px;
+
+}
+
+.review{
+
+    color: black;
+}
+
+.reviewer-name{
+
+    color: black;
+}
+
+.s-s-paragraph-1{
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 20px;
+    font-weight: 700px;
+    text-align: justify;
+    padding:20px;
+}
+
+.sixth-section{
+
+
+    height: 630px;
+    background-color: #6B6B6B;
+    color: white;
+    width: 100%;
+
+}
+
+.contacts-columns{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: fill;
+    padding-top: 50px;
+
+    flex: 1;
+    height: 100%;
+}
+
+.contacts{
+    background-color: #6B6B6B;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+    margin: 1px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.affordable-tours{
+    width: 90%;
+    margin-bottom: 8px;
+    margin-left: 160px;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+    color: orange;
+
+}
+
+.tours-start-from{
+    width: 90%;
+    margin-bottom: 70px;
+    font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 60px;
+    color: #333333;
+}
+
+.contact-info-row{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin-bottom: 40px;
+
+}
+
+.find-us-here{
+        width: 50%;
+        font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+        font-size: 18px;
+}
+
+.contacts-info{
+
+    width: 50%;
+    font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 18px;
+
+}
+
+.symbols{
+
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.social-m-symbols{
+
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-left: 70px;
+}
+
+button-social-m{
+
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100px;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.more-cem{
+    margin-top: 10px;
+    display: flex;
+
+    flex: 1;
+
+
+}
+
+
+.more-1000{
+
+    flex: 1;
+    font-family: 'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contacts-1{
+    background-color: #6B6B6B;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.button-link-2{
+
+    width: 690px;
+    height: 150px;
+    background-color: #7cda24;
+
+
+    display: inline-block;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100px;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-link-2:hover{
+
+    background-color: #2980b9;
+    text-decoration: none;
+    color: orange;
+}
+
+
+
+.map{
+
+    background-color: white;
+    width: 690px;
+    height: 400px;
+}
+
+.footer{
+    background-color: #666666;
+    color: white;
+
+}
+
+
+/***********************************************************************
+******************Media queries for phone version***********************
+************************************************************************/
+
+
+@media screen and (max-width: 540px){
+
+/* First Section | Nav bar and wallpaper image */
+
+body{
+    width: 100%;
+}
+
+
+.whatssap-icon{
+
+    position: fixed;
+    top: 400px;
+    right: 10px;
+    height: 28px;
+    width: 28px;
+    z-index: 99;
+}
+
+
+
+
+
+    .we-love-mpt{
+        width: 90%;
+        font-size: 18px;
+    }
+
+/* second section start */
+
+.second-section{
+    padding-bottom: 600px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.s-s-title{
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.s-s-paragraph{
+    width: 100%;
+    font-weight: 500;
+   }
+
+
+/* Thrird section | Tours */
+
+.f-d-t-descrip-1{
+    font-size: 22px;
+}
+
+.our-tours{
+
+    font-size: 22px;
+
+}
+
+.tours_categories{
+
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.tour-row{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.tour-box{
+
+    width: 100%;
+    margin-bottom: 0px;
+
+}
+
+.tour-box-image{
+
+
+    background-color: gray;
+    color: green;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+
+    border-style: hidden;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+}
+
+.five-star{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 80px;
+    height: 20px;
+}
+
+.tripadvisor{
+
+    bottom: 10px;
+    right: 90px;
+    width: 35px;
+    height: 35px;
+
+}
+
+.tripadvisor-p{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 12px;
+}
+
+.img-tour{
+
+    width: 100%;
+    height: 100%;;
+}
+
+.tour-box-descri{
+
+    color: black;
+
+}
+
+.book-button{
+
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 8px;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.book-button:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: #2980b9;
+}
+
+
+
+/* fourth section | carousel */
+.fourth-section{
+    margin-bottom: 100px;
+}
+
+#sn{
+    display: none;
+}
+
+#th{
+    display: none;
+}
+
+.pictures-rolling{
+    height: 600px;
+}
+
+
+/* fifth Section | Reviews */
+
+
+.fifth-section{
+    height: 1900px;
+    padding-top: 4px;
+    width: 100%;
+}
+
+
+.review-rows{
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.reviews{
+    margin: 20px;
+    width: 330px;
+    height: 500px;
+}
+
+
+
+.reviewer-img{
+    height: 100px;
+}
+
+.reviewer-photo{
+    height: 100px;
+    width: 100px;
+}
+
+.reviewer-name{
+    font-size: 20px;
+}
+
+.s-s-paragraph-1{
+    font-size: 14px;
+    font-weight: 400px;
+    padding:2px;
+}
+
+
+.buttons-more-reviews{
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+/* sixth section | Contacts & locations */
+
+
+
+
+.sixth-section{
+    height: 1000px;
+}
+
+
+.contacts-columns{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+
+    flex: 1;
+    height: 100%;
+}
+
+.contacts{
+    width: 100%;
+}
+
+.affordable-tours{
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.tours-start-from{
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 40px;
+
+}
+
+.contact-info-row{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.find-us-here{
+    font-size: 14px;
+}
+
+
+.contacts-info{
+    font-size: 14px;
+}
+
+.symbols{
+    width: 100%;
+    flex-direction: column;
+}
+
+.social-m-symbols{
+
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+}
+
+button-social-m{
+
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100px;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.more-cem{
+
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+
+}
+
+.more-1000{
+
+    flex: 1;
+    font-family: 'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 18px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts-1{
+
+
+    background-color: #6B6B6B;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.button-link-2{
+
+    width: 100%;
+    height: 60px;
+    font-size: 30px;
+
+}
+
+.map{
+    width: 100%;
+}
+
+.footer{
+        height: 20px;
+        width: 100%;
+}
+}
+
+/***********************************************************************
+******************Media queries for tablet version***********************
+************************************************************************/
+
+
+@media screen and (min-width: 541px) and (max-width: 1280px){
+/* First Section | Nav bar and wallpaper image */
+
+body{
+    width: 100%;
+}
+
+
+.whatssap-icon{
+
+    position: fixed;
+    top: 400px;
+    right: 10px;
+    height: 28px;
+    width: 28px;
+    z-index: 99;
+}
+
+
+.min-price{
+    top: 80%;
+}
+
+.we-love-mpt{
+    width: 90%;
+    font-size: 18px;
+    top: 90%;
+}
+
+
+/* second section start | About us section */
+
+.second-section{
+    height: 450px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.s-s-title{
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.s-s-paragraph{
+    width: 100%;
+    font-weight: 500;
+   }
+
+.button-link{
+
+    display: flex;
+    width: 100px;
+}
+
+/* Thrird section | Tours */
+
+.f-d-t-descrip-1{
+    font-size: 22px;
+}
+
+.our-tours{
+
+    font-size: 22px;
+
+}
+
+.tours_categories{
+
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.tour-row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 60px 10px;
+}
+
+
+
+.tour-box{
+
+    width: 100%;
+    margin-bottom: 0px;
+
+}
+
+.tour-box-image{
+
+
+    background-color: gray;
+    color: green;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+
+    border-style: hidden;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+}
+
+.five-star{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 80px;
+    height: 20px;
+}
+
+.tripadvisor{
+
+    bottom: 10px;
+    right: 90px;
+    width: 35px;
+    height: 35px;
+
+}
+
+.tripadvisor-p{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 12px;
+}
+
+.img-tour{
+
+    width: 100%;
+    height: 100%;;
+}
+
+.tour-box-descri{
+
+    color: black;
+
+}
+
+.book-button{
+
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 8px;
+    background-color: green;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.book-button:hover{
+    background-color: orange;
+    text-decoration: none;
+    color: #2980b9;
+}
+
+
+
+/* fourth section | carousel */
+.fourth-section{
+    margin-bottom: 100px;
+}
+
+#sn{
+    display: none;
+}
+
+#th{
+    display: none;
+}
+
+.pictures-rolling{
+    height: 600px;
+}
+
+
+/* fifth Section | Reviews */
+
+
+.fifth-section{
+    height: 1000px;
+    padding-top: 4px;
+    width: 100%;
+}
+
+
+.review-rows{
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.reviews{
+    margin: 10px;
+    width: 240px;
+    height: 500px;
+}
+
+
+
+.reviewer-img{
+    height: 100px;
+}
+
+.reviewer-photo{
+    height: 100px;
+    width: 100px;
+}
+
+.reviewer-name{
+    font-size: 20px;
+}
+
+.s-s-paragraph-1{
+    font-size: 14px;
+    font-weight: 400px;
+    padding:2px;
+}
+
+.buttons-more-reviews{
+
+    display: flex;
+    flex-direction: row;
+
+}
+.button-link{
+    display: flex;
+    width: 240px;
+}
+
+
+/* sixth section | Contacts & locations */
+
+
+
+
+.sixth-section{
+
+
+    height: 730px;
+    background-color: #6B6B6B;
+    color: white;
+    width: 100%;
+
+}
+
+.contacts-columns{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: fill;
+    padding-top: 50px;
+
+    flex: 1;
+    height: 100%;
+}
+
+.contacts{
+    background-color: #6B6B6B;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+    margin: 1px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.affordable-tours{
+    width: 90%;
+    margin-bottom: 8px;
+    margin-left: 160px;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+    color: orange;
+
+}
+
+.tours-start-from{
+    width: 90%;
+    margin-bottom: 70px;
+    font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 60px;
+    color: #333333;
+}
+
+.contact-info-row{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin-bottom: 40px;
+
+}
+
+.find-us-here{
+        width: 50%;
+        font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+        font-size: 18px;
+}
+
+.contacts-info{
+
+    width: 50%;
+    font-family:  'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 18px;
+
+}
+
+.symbols{
+
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.social-m-symbols{
+
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding-left: 70px;
+}
+
+button-social-m{
+
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100px;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+
+}
+
+.more-cem{
+    margin-top: 10px;
+    display: flex;
+
+    flex: 1;
+
+
+}
+
+
+.more-1000{
+
+    flex: 1;
+    font-family: 'Gilda Display',Georgia,"Times New Roman",serif;
+    font-size: 18px;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.contacts-1{
+    background-color: #6B6B6B;
+    flex: 1;
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.button-link-2{
+
+    width: 100%;
+    height: 150px;
+    background-color: #7cda24;
+
+
+    display: inline-block;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 100px;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-link-2:hover{
+
+    background-color: #2980b9;
+    text-decoration: none;
+    color: orange;
+}
+
+
+
+.map{
+
+    background-color: white;
+    width: 100%;
+    height: 400px;
+}
+.footer{
+        height: 20px;
+        width: 100%;
+}
+
+
+
+}

@@ -1,0 +1,48 @@
+
+
+.ap-header{
+    margin-left: 20px;
+    margin-top: 160px;
+}
+
+.ap-panel{
+
+    background-color: white;
+    border-style: solid;
+    border-color: #9e9e9e;
+    border-width: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 400px;
+}
+
+.ap-carousel{
+
+
+    border: 200px;
+
+}
+
+/*********************************************************************
+********** MEDIA QUERIES FOR MOBILE VERSION ***************************
+*********************************************************************/
+
+
+@media screen and (min-width: 1200px){
+
+.ap-header{
+    margin-left: 400px;
+}
+
+
+.ap-panel{
+
+    margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+
+}

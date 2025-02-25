@@ -1,0 +1,33 @@
+.settings-container {
+    margin: 20px auto;
+    max-width: 800px;
+    margin-top: 150px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes table borders */
+    text-align: left;
+}
+
+.users-table th, .users-table td {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.users-table .row-white {
+    background-color: white;
+}
+
+.users-table .row-gray {
+    background-color: lightgray;
+}
+
+.users-table a {
+    text-decoration: none;
+    color: #007bff; /* Link color */
+}
+
+.users-table a:hover {
+    text-decoration: underline;
+}

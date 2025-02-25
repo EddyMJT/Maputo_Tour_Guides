@@ -1,0 +1,254 @@
+
+.r-intro{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 24px;
+    color: green;
+    margin-bottom: 10px;
+    margin-top: 100px;
+
+}
+
+.r-more-reviews{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 24px;
+    color: green;
+    margin-bottom: 10px;
+    margin-top: 100px;
+    padding: 6px;
+
+}
+
+
+.r-tour-name{
+
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.r-review-box{
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    background-color: #fffff1;
+    border-style: none;
+    border-radius: 40px;
+    border-width: 4px;
+    margin: 60px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    height: 340px;
+
+
+}
+
+.r-reviewer-image{
+
+    border-right-style: solid;
+    border-right-width: 4px;
+    border-right-color: orange;
+
+    width: 200px;
+    height: 190px;
+    padding-left: 60px;
+    padding-right: 10px;
+
+}
+
+.r-reviewer-img{
+
+    max-width: 100%;
+    max-height: 90%;
+    border-style: none;
+    border-width: 4px;
+    border-radius: 100px;
+    background-color: white;
+
+}
+
+.r-review{
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: -90px;
+    height: 170px;
+    width: 1328px;
+    color: black;
+}
+
+.r-tour-title{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+}
+
+.r-review-title{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 28px;
+}
+
+.r-review-text{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 14px;
+}
+
+.r-score{
+
+
+    height: 20px;
+    width: 80px;
+    margin-bottom: 6px;
+
+
+}
+
+
+
+/***********************************************************************
+*********************** MEDIA QUERIES FOR MOBILE VERSION APP **********************
+*************************************************************************/
+
+@media screen and (max-width: 821px){
+
+.r-tour-name{
+
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0px;
+
+}
+
+.r-intro{
+
+    font-size: 14px;
+    color: green;
+    margin-bottom: 4px;
+    margin-top: 10px;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0px;
+}
+
+.r-more-reviews{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 14px;
+    color: green;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    padding: 0px;
+    width: 100%;
+}
+
+.r-review-box{
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    background-color: #fffff1;
+    border-style: none;
+    border-radius: 4px;
+    border-width: 4px;
+    margin: 0px;
+    margin-top: 10px;
+    height: 100%;
+
+
+
+}
+
+.r-reviewer-image{
+
+    border-right-style: solid;
+    border-right-width: 4px;
+    border-right-color: orange;
+
+    width: 200px;
+    height: 140px;
+    padding-left: 60px;
+    padding-right: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 0px;
+
+}
+
+.r-reviewer-img{
+
+    max-width: 100%;
+    max-height: 90%;
+    border-style: none;
+    border-width: 4px;
+    border-radius: 100px;
+    background-color: white;
+
+}
+
+.r-review{
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    height: 100%;
+    width: 100%;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0px;
+}
+
+.r-tour-title{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 14px;
+    flex: 1;
+}
+
+.r-review-title{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 18px;
+    flex: 0.1;
+
+}
+
+.r-review-text{
+
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    font-size: 14px;
+    flex: 3;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.r-score{
+
+
+    height: 20px;
+    width: 80px;
+    margin-bottom: 6px;
+
+}
+
+}

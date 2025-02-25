@@ -1,0 +1,64 @@
+
+.nte-panel{
+
+    background-color: white;
+    margin-top: 160px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 40px;
+
+}
+
+
+.nte-panel-title{
+
+    margin-bottom: 40px;
+    border-bottom-style; solid;
+    border-bottom-color: #9e9e9e;
+    border-bottom-width: 1px;
+
+}
+
+.nte-field{
+
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-bottom-style: solid;
+    border-bottom-color: #9e9e9e;
+    border-bottom-width: 1px;
+
+}
+
+.nte-field-name{
+    flex: 1;
+}
+
+.nte-field-descr{
+    flex: 3;
+    height: 100%;
+}
+
+/******************************************************
+*** MEDIA QUERIES FOR MOBILE VERSION ******************
+******************************************************/
+
+
+@media screen and (max-width: 580px){
+
+.nte-panel{
+
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+
+}
+
+.nte-field{
+    flex-direction: column;
+}
+
+
+}

@@ -1,0 +1,119 @@
+.r-register-form{
+
+    width: 600px;
+    height: 500px;
+    margin-top: 170px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: lightgreen;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    box-shadow: 0px 0px 20px lightgreen;
+}
+
+.l-btn-submit{
+
+    background-color: rgba(0, 0, 0, 0.8);
+    border-style: none;
+    color: white;
+    width: 70px;
+    height: 30px;
+    margin-top: 30px;
+
+}
+
+.r-form-fields{
+
+        width: 600px;
+        height: 60px;
+        margin: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+}
+
+.r-field-labels{
+
+    flex: 1;
+    position: absolute;
+    right: 56%;
+
+}
+
+.r-fields{
+
+    flex: 1;
+    position: absolute;
+    left: 46%;
+
+}
+
+/********************************************************
+*********** MEDIA QUERIES FOR MOBILE VERSION ************
+*********************************************************/
+
+
+@media screen and (max-width: 414px){
+
+.r-register-form{
+
+    width: 100%;
+    height: 500px;
+    margin-top: 160px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: lightgreen;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    box-shadow: 0px 0px 20px lightgreen;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.l-btn-submit{
+
+    background-color: rgba(0, 0, 0, 0.8);
+    border-style: none;
+    color: white;
+    width: 70px;
+    height: 30px;
+    margin-top: 30px;
+
+}
+
+.r-form-fields{
+
+        width: 100%;
+        height: 60px;
+        margin: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+}
+
+.r-field-labels{
+
+    flex: 1;
+    position: absolute;
+    right: 56%;
+
+}
+
+.r-fields{
+
+    flex: 1;
+    position: absolute;
+    left: 46%;
+
+}
+}

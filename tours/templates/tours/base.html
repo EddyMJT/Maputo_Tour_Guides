@@ -1,10 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load bootstrap3 %}
 
-</body>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Maputo Tour Guides</title>
+
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        {% load static %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/home.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/about_us.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/our_tours.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/gallery.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/reviews.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contacts.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/register.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/mnp_fd_tour.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/blog.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/new_topic.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/new_topic_entry.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/new_tour.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/tour_info.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/guide_bio.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/add_guide.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/tour_photos.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/add_photos.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/photo.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/topic.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/topic_entry.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/change_user_settings.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/user_settings.css' %}">
+
+
+        <link rel="icon" href="data:,">
+
+    </head>
+
+    <body>
+
+
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top navbar-expand-xl">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- Collapsed button for mobile view -->
+      <button type="button" class="navbar-toggle collapsed navbar-right" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- Brand logo -->
+      <a class="navbar-brand" href="{% url 'tours:home' %}">
+        <img class="img-logo" src="/static/images/logo.png" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Collapsible navbar -->
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="{% if request.path == '/about_us/' %}active{% endif %}">
+          <a href="{% url 'tours:about_us' %}"><strong>ABOUT US</strong></a>
+        </li>
+        <li class="{% if request.path == '/our_tours/' or request.path == '/our_tours/beach_tours/' or request.path == '/our_tours/city_tours/' or request.path == '/our_tours/cultural_tours/' or request.path == '/transfers/'%}active{% endif %}">
+          <a href="{% url 'tours:our_tours' %}"><strong>OUR TOURS</strong></a>
+        </li>
+        <li class="{% if request.path == '/gallery/' %}active{% endif %}">
+          <a href="{% url 'tours:gallery' %}"><strong>GALLERY</strong></a>
+        </li>
+        <li class="{% if request.path == '/reviews/' %}active{% endif %}">
+          <a href="{% url 'tours:reviews' %}"><strong>REVIEWS</strong></a>
+        </li>
+        <li class="{% if request.path == '/blog/posts/' %}active{% endif %}">
+          <a href="{% url 'tours:blog' %}"><strong>BLOG</strong></a>
+        </li>
+        <li class="{% if request.path == '/contacts/' %}active{% endif %}">
+          <a href="{% url 'tours:contacts' %}"><strong>CONTACTS</strong></a>
+        </li>
+
+        {% if user.is_authenticated %}
+          <li><a><strong>logged in, {{user.username}}</strong></a></li>
+          {% if user.is_superuser %}
+            <li class="{% if request.path == '/users/user_settings/' %}active{% endif %}">
+                <a href="{% url 'users:user_settings' %}"><strong>SETTINGS</strong></a>
+            </li>
+          {% endif %}
+
+          <li class="{% if request.path == '/users/logout/' %}active{% endif %}">
+            <a href="{% url 'users:logout' %}"><strong>LOGOUT</strong></a>
+          </li>
+        {% else %}
+          <li class="{% if request.path == '/users/login/' %}active{% endif %}">
+            <a href="{% url 'users:login' %}"><strong>LOGIN</strong></a>
+          </li>
+          <li class="{% if request.path == '/users/register/' %}active{% endif %}">
+            <a href="{% url 'users:register' %}"><strong>REGISTER</strong></a>
+          </li>
+        {% endif %}
+      </ul>
+    </div><!--/.navbar-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
+
+
+
+
+        <!-- end of navbar -->
+
+<!--    <section class="page-body"> -->
+        {% block content %} {% endblock content %}
+ <!--   </section>  -->
+
+
+    </body>
+
 </html>
+

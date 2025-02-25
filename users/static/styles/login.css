@@ -1,0 +1,44 @@
+
+.l-login-form{
+
+    width: 400px;
+    height: 400px;
+    margin-top: 140px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: lightgreen;
+    font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;
+    box-shadow: 0px 0px 20px lightgreen;
+}
+
+.l-btn-submit{
+
+    background-color: rgba(0, 0, 0, 0.8);
+    border-style: none;
+    color: white;
+    width: 70px;
+    height: 30px;
+    margin-top: 30px;
+
+}
+
+/***************************************************
+*************** MEDIA QUERIES FOR MOBILE VERSION *****
+****************************************************/
+
+@media screen and (max-width: 414px){
+
+
+
+.l-login-form{
+    width: 300px;
+    height: 450px;
+    margin-top: 170px;
+}
+
+}
