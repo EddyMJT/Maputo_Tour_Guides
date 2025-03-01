@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <center>
+    <form action="{% url 'users:register' %}" method="post" class="r-register-form">
+        {% if form.errors %}
+             <img src="/static/images/mtg.png" style="height: 40px; width: 49px;">
+            <h3 style="margin-bottom: 10px;">Register Your Account here!</h3>
+            <div style="border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: green; width:200px;  margin-bottom: 49px;"></div>
+            <p>{{ form.errors }}</p>
+             <center><a class="button-link" href="{% url 'users:register' %}">Try again!</a></center>
+        {% else %}
+            <img src="/static/images/mtg.png" style="height: 40px; width: 49px;">
+            <h3 style="margin-bottom: 10px;">Register Your Account here!</h3>
+            <div style="border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: green; width:200px;  margin-bottom: 49px;"></div>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="r-form-fields">
+                    <div class="r-field-labels"><strong>{{ field.label }}:</strong></div>
+                    <div class="r-fields">{{ field }}</div>
+                </div>
+            {% endfor %}
+            <button name="submit" class="l-btn-submit">Register</button>
+            <input type="hidden" name="next" value="{% url 'tours:home' %}"/>
+        {% endif %}
+    </form>
+        <p>Your registration will need approval!</p>
+    </center>
+
+{% endblock content %}

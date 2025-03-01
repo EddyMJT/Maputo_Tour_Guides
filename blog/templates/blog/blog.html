@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<b>Blog Page</b>
-</body>
-</html>
+{% extends 'tours/base.html' %}
+
+{% block content %}
+<div class="blog-container">  <!-- white container where the body of this page will be written -->
+    <div class="bl-intro">
+        <div class="blog-intro">All You Need To Know About Maputo...</div>
+        <div  class="blog-add-post"><a href="{% url 'blog:new_topic' %}">Add Post</a></div>
+    </div>
+    <div class="blog-separator"></div>
+
+    <!-- End of Intro Section -->
+
+    <!-- All section where blog posts are displayed -->
+    <div class="blog-post-row">
+        {% for topic in topics %}
+            <div class="blog-post-cell">
+                <a href="{% url 'blog:topic' topic.id topic.slug_title %}">
+                    <div class="blog-post-category">
+                        <img src="{{ topic.image.url }}" height="100%" width="100%">
+                    </div>
+                    <center><a href="{% url 'blog:topic' topic.id topic.slug_title %}" class="blog-category-text">{{ topic }}</a></center>
+                </a>
+            </div>
+        {% empty %}
+            <div class="bl-no-post-added"> <h1>No Posts Have been added Yet!</h1></div>
+        {% endfor %}
+    </div>
+    <!-- end of blog posts section -->
+</div>
+{% endblock content %}

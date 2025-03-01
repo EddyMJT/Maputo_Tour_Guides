@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+
+    <div class="r-tour-name">
+        <div class="r-intro">Do not take it from us... Here is what people say about us...</div>
+        <a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html" style="color: green;"><div class="r-more-reviews">Read +100 Reviews on Tripadvisor</div></a>
+    </div>
+    {% for review in reviews %}
+    <div class="r-review-box">
+        <div class="r-reviewer-image">
+            <img src="{{ review.reviewer_image.url }}" class="r-reviewer-img" width="100%" height="100%">
+            <center><p>{{ review.reviewer_name }}</p></center>
+        </div>
+        <div class="r-review">
+            <a href="{% url 'tours:tour_info' review.tour.id review.tour.slug_title %}"><div class="r-tour-title" style="color: green"> Tour: {{ review.tour }}</div></a>
+            <div class="r-review-title"><strong>{{review.title}}</strong></div>
+            <div class="r-score" >
+                <img src="/static/images/five-star.png" style="width: 100%; height: 100%;">
+            </div>
+            <div class="r-review-text">
+                "{{review.text.html|safe}}." Read on our <a href="https://www.tripadvisor.com/AttractionProductReview-g293819-d24150592-or10-Maputo_National_Park_Maputo_Special_Reserve_Full_day_Tour-Maputo_Maputo_Provi.html" style="color: green;">Tripadvisor</a>
+            </div>
+        </div>
+        {% if user.is_superuser %}
+            <a href="{% url 'tours:delete_review' review.id %}">delete review</a>
+        {% endif %}
+    </div>
+    {% empty %}
+        <p>No Reviews have been added Yet!</p>
+    {% endfor %}
+
+{% endblock content %}

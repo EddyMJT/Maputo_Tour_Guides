@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+{% if name %}
+    <div class="thank-you">
+        Thank you, {{ name }}! We received your email.
+    </div>
+{% else %}
+
+<div class="c-body">
+    <div class="c-get-in-t">
+        <center>
+            <div class="get-in-touch-title"><strong>GET IN TOUCH</strong></div>
+            <div class="divider"></div>
+            <div class="description">Do not hesitate to contact us...</div>
+        </center>
+        <div class="c-contacts">
+            <div class="c-contacts-1">
+                <div class="c-contacts-icons">
+                    <img src="/static/images/email-icon.png" alt="Email Icon">
+                </div>
+                <p>info@maputotours.net</p>
+            </div>
+            <div class="c-contacts-1">
+                <div class="c-contacts-icons">
+                    <img src="/static/images/call-icon.png" alt="Phone Icon">
+                </div>
+                <p>(+258) 82 035 89 67</p>
+            </div>
+            <div class="c-contacts-1">
+                <div class="c-contacts-icons">
+                    <img src="/static/images/w-logo.png" alt="WhatsApp Icon">
+                </div>
+                <p>(+258) 82 035 89 67</p>
+            </div>
+        </div>
+        <div class="c-social-media">
+            <div class="button-social-m">
+                <a href="https://www.facebook.com/MaputoTourGuides">
+                    <img src="/static/images/fb-logo.png" alt="Facebook Logo">
+                </a>
+            </div>
+            <div class="button-social-m">
+                <a href="https://www.instagram.com/maputo_tour_guides/">
+                    <img src="/static/images/insta-logo.png" alt="Instagram Logo">
+                </a>
+            </div>
+            <div class="button-social-m">
+                <a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html">
+                    <img src="/static/images/tripadvisor.png" alt="TripAdvisor Logo">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="c-contact-form">
+        <form action="{% url 'tours:contacts' %}" method="post" class="c-form">
+            {% csrf_token %}
+            <input type="text" name="name" id="id_name" placeholder="Name" required>
+            <input type="email" name="email" id="id_email" placeholder="Your email" required>
+            <textarea name="message" id="id_message" placeholder="Your message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}
+
+
+
+
+
+

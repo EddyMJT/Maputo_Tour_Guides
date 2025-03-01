@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "tours/base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+  <form action="{% url 'tours:add_guide' %}" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{form.media}}
+      <div class="ag-enroll-panel">
+
+        <div class="ag-panel-title"><h1>Add Guide</h1></div>
+        <!-- Name -->
+        <div class="ag-field">
+          <div class="ag-field-name"><label>Name: </label></div>
+          <div class="ag-field-descr">{{form.name}}</div>
+        </div>
+        <!-- Short Description -->
+        <div class="ag-field">
+          <div class="ag-field-name"><label>Short description: </label></div>
+          <div class="ag-field-descr">{{form.short_description}}</div>
+        </div>
+        <!-- Full Description -->
+        <div class="ag-field">
+          <div class="ag-field-name"><label>Full Description: </label></div>
+          <div class="ag-field-descr">{{form.full_description | safe}}</div>
+        </div>
+        <!-- Image -->
+        <div class="ag-field">
+          <div class="ag-field-name"><label>Image: </label></div>
+          <div class="ag-field-descr">{{form.image}}</div>
+        </div>
+        <div style="margin-top: 40px;"><button name="submit">Enroll Guide</button></div>
+      </div>
+  </form>
+
+{% endblock content %}

@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+    {% if form.errors %}
+        <p>
+            Your Username and password did not match.
+            Please try again.
+        </p>
+    {% endif %}
+
+    <center>
+        {% if messages %}
+            <div style="margin-top: 100px;">
+                {% for message in messages %}
+                    <p style="color: red;">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="post" action="{% url 'users:login' %}" class="l-login-form">
+             {% csrf_token %}
+            <img src="/static/images/mtg.png" style="height: 40px; width: 49px;">
+            <h3 style="margin-bottom: 10px;"> Enter Your Login Details here</h3>
+            <div style="border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: green; width:200px;  margin-bottom: 49px;"></div>
+
+            {{form.as_p}}
+
+            <button name="submit" class="l-btn-submit">log in</button>
+            <input type="hidden" name="next" value="{% url 'tours:home' %}">
+        </form>
+        <p>Don't have an account yet? click <a href="{% url 'users:register' %}">here</a> to register </p>
+    </center>
+{% endblock content %}

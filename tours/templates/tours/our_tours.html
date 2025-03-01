@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+
+<center>
+    <a class="ot-button-book" href="{% url 'tours:contacts' %}"><h2>Book Now!</h2></a>
+    <div class="ot-sidebar">
+        <div class="category"><center><h3>Select the Category</h3></center></div>
+        <div class="ot-tours-menu">
+            <a href="{% url 'tours:our_tours' %}" class="ot-button-link">Safaris</a>
+            <a href="{% url 'tours:beach_tours' %}" class="ot-button-link">Beaches</a>
+            <a href="{% url 'tours:city_tours' %}" class="ot-button-link">City Tours</a>
+            <a href="{% url 'tours:cultural_tours' %}" class="ot-button-link">Cultural Tours</a>
+            <a href="{% url 'tours:transfers' %}" class="ot-button-link">Transfers</a>
+            {% if user.is_superuser %}
+                <a class="ot-button-link" href="{% url 'tours:new_tour' %}">Add Tour</a>
+            {% endif %}
+        </div>
+    </div>
+</center>
+
+<div class="ot-tours">
+    <center><div class="our-packages"><h3 class="s-s-title">{{category}}</h3></div></center>
+        {% for subcategory in subcategory_list %}
+            <div class="ot-mnp" >
+                <h3 class="s-s-title">{{subcategory}}</h3>
+                <div class="ot-tours-row">
+                    {% for tour in safari_tour_list %}
+                        {% if tour.subcategory == subcategory %}
+                            <div class="ot-tour">
+                                <div class="ot-tour-photo"><img class="ot-tour-img" src="{{ tour.image.url }}"></div>
+                                <div class="ot-tour-description">
+                                <center>
+                                    <div style="font-size: 20px; padding: 4px;font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;"><strong>{{tour.title}}</strong></div>
+                                    <div style="color: #666666; font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;"><img src="/static/images/clock.png" style="height: 20px; width: 20px; margin: 4px;">
+                                        {{tour.duration}}</div>
+                                    <div style="margin: 4px;color: #666666; font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;">From <strong>${{tour.price}}/person</strong></div>
+                                    <div style="color: #666666; font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;"><img src="/static/images/calendar.png" style="height: 20px; width: 20px; margin: 4px; "> Availability: All Year</div>
+                                        <a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" class="ot-button-tour">Read More</a>
+                                    <div style="font-size: 10px; padding-top: 2px;color: rgb(0,0,0,0.4); font-family: 'ABeeZee',Helvetica,Arial,Lucida,sans-serif;">*Discounts are applied according to number of people joining</div>
+                                </center>
+                            </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+</div>
+
+<div class="ot-footer">
+    {% for tour in tours %}
+        {% if tour.category != category %}
+            <div class="ot-more-tours"><a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" class="ot-links">{{tour.title}}</a></div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

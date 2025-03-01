@@ -1,1 +1,131 @@
-<b>About_us</b>
+{% extends 'tours/base.html' %}
+
+{% block content %}
+
+    <div class="about-us-img"></div>
+
+    <div class="guides">
+        <h3 class="meet-your-guides"><center>MEET YOUR GUIDES</center></h3>
+        <div class="au-border" ></div>
+        <center>
+            <div class="au-guides-row">
+                {% for guide in guides %}
+                    <a href="{% url 'tours:guide_bio' guide.id %}">
+                        <div class="guides-info">
+                            <img src="{{guide.image.url}}" height="90%" width="90%" style="border-radius: 40px;">
+                            <div class="au-guide-info">{{guide.name}} | {{guide.short_description}}</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </center>
+        {% if user.is_superuser %}
+            <center><a href="{% url 'tours:add_guide' %}" class="button-link">Enroll Guide</a></center>
+        {% endif %}
+    </div>
+    <div class="second-section">
+        <center><h3 class="s-s-title">About Maputo Tour Guides</h3></center>
+        <center><p class="s-s-paragraph"><strong>Maputo Tour guides</strong> is a Tour Operator formed by  young
+        Mozambicans who seek to offer unique and exciting experiences
+        to every visitor coming to <a href="https://en.wikipedia.org/wiki/Maputo">Maputo</a>. With a combination of Walking,
+        on wheels tours; in the city and out of the city tours(Safaris
+        and Beach), we have the most varied and exciting options to offer.
+        Before booking any tour read the <a href="{% url 'tours:reviews' %}">reviews</a>  of those who have booked us!</p></center>
+    </div>
+
+    <section class="fifth-section">
+        <strong><center><h3 class="s-s-title">Read What People Say About Us...</h3></center></strong>
+        <div class="review-rows">
+            {% for review in reviews_list %}
+            <div class="reviews">
+                <div class="reviewer-img"><center><img class="reviewer-photo" src="{{review.reviewer_image.url}}"></center></div>
+                <div class="review">
+                    <center><h3 class="reviewer-name">{{review.reviewer_name}}</h3>
+                        <p><strong>{{review.title}}</strong></p>
+                        <p class="s-s-paragraph-1">{{review.text.html|safe}}</p>
+                    </center>
+                </div>
+            </div>
+            {% empty %}
+                No reviews added yet!
+            {% endfor %}
+        </div>
+
+        <div class="buttons-more-reviews">
+            <a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html" class="button-link">Read More on Tripadvisor</a>
+            <a href="https://www.facebook.com/MaputoTourGuides" class="button-link">Read More on Facebook</a>
+        </div>
+
+    </section>
+
+    <section class="sixth-section">
+
+        <div class="contacts-columns">
+            <div class="contacts">
+                <div class="affordable-tours">AFFORDABLE TOURS</div>
+                <div class="tours-start-from"><center>Tours start from $30</center></div>
+                <div class="contact-info-row">
+                    <div class="find-us-here">
+                        <center>
+                        <h4 style="color: orange;">FIND US HERE</h4>
+                        <p>Independence square/</p>
+                        <p>Praca da Independence,</p>
+                        <p>Maputo City</p>
+                        </center>
+                    </div>
+                    <div class="contacts-info">
+                        <center>
+                        <h4 style="color:orange;">CONTACT INFO</h4>
+                        <P>info@maputotours.net</P>
+                        <p>(+258) 82 035 89 67</p>
+                        <p>(+258) 84 695 5681</p>
+                        </center>
+                    </div>
+                </div>
+                <div class="symbols">
+
+                    <div class="social-m-symbols">
+
+                        <div class="button-social-m" style="margin-right: 8px;">
+                            <a href="https://www.facebook.com/MaputoTourGuides">
+                            <img src="/static/images/fb-logo.png" style="height: 40px; width: 40px;">
+                        </a>
+                        </div>
+                        <div class="button-social-m" style="margin-right: 8px;">
+                            <a href="https://www.instagram.com/maputo_tour_guides/" class="button-social-m">
+                            <img src="/static/images/insta-logo.png" style="height: 40px; width: 40xp;">
+                        </a>
+                        </div>
+                        <div class="button-social-m" style="margin-right: 8px;">
+                            <a href="https://www.tripadvisor.com/Attraction_Review-g293819-d19504816-Reviews-Maputo_Tour_Guides-Maputo_Maputo_Province.html"
+                           class="button-social-m"><img src="/static/images/tripadvisor.png" style="height: 40px; width: 40px;"></a>
+                        </div>
+
+
+                    </div>
+                    <div class="more-1000">
+                        <h4 style="font-size: 28px; color: orange;">+1000</h4>
+                        <p>People Met!</p>
+                    </div>
+                    <div class="more-1000">
+                        <h4 style="font-size: 28px; color: orange;">+1000</h4>
+                        <p>Tours Done!</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="contacts-1">
+                <div>
+                    <a href="{% url 'tours:contacts' %}" class="button-link-2">Book Now!</a>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14347.86425713117!2d32.5732424!3d-25.9691533!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee69b049178f8a7%3A0x743e934fe8acd2fd!2sPra%C3%A7a%20da%20Independ%C3%AAncia!5e0!3m2!1sen!2smz!4v1706399846950!5m2!1sen!2smz" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <center>Footer</center>
+    </section>
+{% endblock content %}
