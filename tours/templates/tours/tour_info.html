@@ -1,10 +1,426 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+
+{% block content %}
+
+<!-- Body -->
+<div style="background-color: white; padding:0; margin-bottom: -80px;">
+
+  <div class="ti-tour-title">
+    <h1><strong>{{tour.title}}</strong></h1>
+  </div>
+  <div class="ti-menu">
+    <div><img src="/static/images/five-star.png" height="20px" width="100px"> <u>Recommended by +100 of travellers</u></div>
+      <div>
+        {% if user.is_superuser %}
+          <small>
+            <a href="{% url 'tours:edit_tour' tour.id %}">edit tour | </a>
+            <a href="{% url 'tours:new_review' tour.id tour.slug_title %}">Add Review | </a>
+            <a href="{% url 'tours:delete_tour' tour.id %}">delete tour | </a>
+            <a href="{% url 'tours:add_photos' tour.slug_title tour.id %}">add photos | </a>
+          </small>
+        {% endif %}
+          <small>
+            <a href="{% url 'tours:our_tours' %}"><strong>All tours</strong></a>
+          </small>
+      </div>
+
+  </div>
+  <!--- Desktop Version -->
+  <div class="mnp-fdt-photos">
+    <div class="mnp-fdt-main-photo"><img src="{{tour.image.url}}" style="width: 100%; height: 100%; border-top-left-radius: 20px;border-bottom-left-radius: 20px;">
+    </div>
+    <div class="mnp-fdt-two-images">
+        <div class="mnp-fdt-image-1"><img src="{{tour.image_2.url}}" width="100%" height="100%"></div>
+        <div class="mnp-fdt-image-2"><img src="{{tour.image_3.url}}" width="100%" height="100%">
+          <a href="{% url 'tours:tour_photos' tour.id tour.slug_title %}"><div class="more-photos">More Photos</div></a>
+        </div>
+    </div>
+
+</div>
+  <div class="mnp-tour-description">
+    <div class="mnp-tour-description-left">
+        <div class="ti-about">
+            <h1 style="margin-bottom: 40px;  font-size: 18px; color: #000000;"><strong>About</strong></h1>
+            <p class="ti-paragraph">{{tour.short_description.html|safe}}</p>
+        </div>
+        <div style="height: 220px; font-family: 'Trip Sans VF'; color: #333333; font-size: 18; padding-top: 20px;">
+            <p><img src="/static/images/people-graphics.png" height="20px" width="20px">Age: {{tour.participants_ages}}</p>
+            <p><img src="/static/images/hourglass.png" height="20px" width="20px">Duration: {{tour.duration}}</p>
+            <p><img src="/static/images/clock.png" height="20px" width="20px">Start Time: {{tour.start_time}}</p>
+            <p><img src="/static/images/location.png" height="20px" width="20px">  Pick up: {{tour.pick_up_location}}</p>
+            <p><img src="/static/images/live-guide.png" height="20px" width="20px">  Live Guide: {{tour.language}}</p>
+        </div>
+        <!-- Accordion contaner -->
+      <div class="ti-accordion">
+        <!-- start bootstrap accordion -->
+        <div class="panel-group" id="accordionExample">
+          <!-- What is Included -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseOne">
+                  What is Included
+                  <span class="glyphicon glyphicon-minus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                {{tour.included.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- What is expected -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordionExample" href="#collapseTwo">
+                  What to Expect
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.expected.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- accessibility -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseSix">
+                  Accessibility
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.accessibility.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- Additional Infor -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseSeven">
+                  Additional Information
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.additional_info.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- Cancellation Policy -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseEight">
+                  Cancellation Policy
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.cancellation_policy.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- FAQ -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseNine">
+                  FAQ
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.FAQ.html|safe}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Full description -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseTen">
+                  Places to visit | Full description
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.full_description.html| safe}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- end bootstrap accordion -->
+          <h3 style="margin: 0px; padding: 0px;">More Tours</h3>
+          <div class="ti-more-tours">
+            {% for tour in not_similar_tours_list %}
+              <div class="ti-other-tours">
+              <a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="text-decoration: none; color: #9e9e9e;">
+                <!-- <div class="mnp-other-tours" id="first-other-tour"></div>
+                <center><div> Maputo Art & Architecture Walking Tour</div></center> -->
+                <div><img src="{{tour.image.url}}" width="100%" height="100%"></div>
+                <center><div>{{tour.title}}</div></center>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+
+    </div>
+    </div>
+
+    <div class="mnp-tour-description-right">
+        <div class="mnp-book">
+          <center>
+            <h1 style="font-weight: bold;"> Reserve Your Spot!!!</h1>
+            <div style="border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: #9e9e9e; width: 200px;"></div>
+
+            <p style="font-size: 18px; margin: 0px; padding: 0px;"> <strong>From</strong></p>
+            <h2 style="font-size: 68px;padding: 0px; margin:0px;"><img src="/static/images/price-tag.png" height="40px" width="40px">{{tour.price}}</h2>
+            <p style="font-size: 18px; color: #9e9e9e; margin-bottom: 10px;">per adult(price varies by group size) </p>
+            <a href="{% url 'tours:contacts' %}" class="ot-button-tour">Book Now!</a>
+          </center>
+        </div>
+        <div class="mnp-contact-us">
+          <center>
+            <h2> DO YOU HAVE ANY QUESTION? </h2>
+            <p style="color: #9e9e9e;"> Do not hesitate to contact us for further assistance</p>
+            <div style="margin: 40px;"><img src="/static/images/call-icon.png" height="20px" width="20px"> +258 82 035 89 67</div>
+            <div style="margin: 40px;"><img src="/static/images/w-logo.png" height="20px" width="20px"> +258 82 035 89 67</div>
+            <div style="margin: 40px;"><img src="/static/images/email-icon.png" height="20px" width="20px">info@maputotours.net</div>
+          </center>
+
+        </div>
+        <div class="mnp-why-us">
+          <h3>More {{tour.category}}</h3>
+          {% for tour in similar_tours_list %}
+            <div class="mnp-why-us-rows"><a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="color: #9e9e9e;">{{tour.title}}</a></div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+  <!-- Mobile Version -->
+  <div class="mnp-fdt-photos-MV">
+    <div class="mnp-fdt-main-photo"><img src="{{tour.image.url}}" style="width: 100%; height: 100%; border-top-left-radius: 20px;border-bottom-left-radius: 20px; onerror='this.onerror=null;'; " >
+      <a href="{% url 'tours:tour_photos' tour.id tour.slug_title %}"><div class="more-photos">More Photos</div></a>
+    </div>
+    <div class="mnp-fdt-two-images">
+        <div class="mnp-fdt-image-1"><img src="{{tour.image_2.url}}" width="100%" height="100%" onerror="this.onerror=null;"></div>
+        <div class="mnp-fdt-image-2"><img src="{{tour.image_3.url}}" width="100%" height="100%" onerror="this.onerror=null;">
+        </div>
+    </div>
+
+</div>
+  <div class="mnp-tour-description-MV">
+    <div class="mnp-tour-description-left">
+        <div class="ti-about">
+            <h1 style="margin-bottom: 30px;  font-size: 22px; color: #000000;font-family: 'Trip Sans VF';"><strong>About</strong></h1>
+            <p class="ti-paragraph">{{tour.short_description.html|safe}}</p>
+        </div>
+          <div class="mnp-book">
+          <center>
+            <h1 style="font-weight: bold; font-size: 30px"> Reserve Your Spot!!!</h1>
+            <div style="border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: #9e9e9e; width: 200px;"></div>
+
+            <p style="font-size: 18px; margin: 0px; padding: 0px;"> <strong>From</strong></p>
+            <h2 style="font-size: 58px;padding: 0px; margin:0px;"><img src="/static/images/price-tag.png" height="40px" width="40px">{{tour.price}}</h2>
+            <p style="font-size: 18px; color: #9e9e9e; margin-bottom: 10px;">per adult(price varies by group size) </p>
+            <a href="{% url 'tours:contacts' %}" class="ot-button-tour">Book Now!</a>
+          </center>
+        </div>
+        <div style="height: 220px; font-family: 'Trip Sans VF'; color: #333333; font-size: 18; padding-top: 20px; margin: 20px;">
+            <p><img src="/static/images/people-graphics.png" height="20px" width="20px" style="margin-right: 10px;">Age: {{tour.participants_ages}}</p>
+            <p><img src="/static/images/hourglass.png" height="20px" width="20px" style="margin-right: 10px;">Duration: {{tour.duration}}</p>
+            <p><img src="/static/images/clock.png" height="20px" width="20px" style="margin-right: 10px;">Start Time: {{tour.start_time}}</p>
+            <p><img src="/static/images/location.png" height="20px" width="20px" style="margin-right: 10px;">  Pick up: {{tour.pick_up_location}}</p>
+            <p><img src="/static/images/live-guide.png" height="20px" width="20px" style="margin-right: 10px;">  Live Guide: {{tour.language}}</p>
+        </div>
+        <!-- Accordion contaner -->
+      <div class="ti-accordion">
+        <!-- start bootstrap accordion -->
+        <div class="panel-group" id="accordionExample-MV">
+          <!-- What is Included -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseOne">
+                  What is Included
+                  <span class="glyphicon glyphicon-minus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne-MV" class="panel-collapse collapse in">
+              <div class="panel-body">
+                {{tour.included.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- What is expected -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordionExample" href="#collapseTwo">
+                  What to Expect
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.expected.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- accessibility -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseSix">
+                  Accessibility
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSix-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.accessibility.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- Additional Infor -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseSeven">
+                  Additional Information
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSeven-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.additional_info.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- Cancellation Policy -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseEight">
+                  Cancellation Policy
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEight-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.cancellation_policy.html|safe}}
+              </div>
+            </div>
+          </div>
+          <!-- FAQ -->
+            <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseNine">
+                  FAQ
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseNine-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.FAQ.html|safe}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Full description -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionExample" href="#collapseTen">
+                  Places to visit | Full description
+                  <span class="glyphicon glyphicon-plus pull-right"></span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTen-MV" class="panel-collapse collapse">
+              <div class="panel-body">
+                {{tour.full_description.html|safe}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- end bootstrap accordion -->
+
+          <div class="mnp-why-us">
+          <h3>More {{tour.category}}</h3>
+          {% for tour in similar_tours_list %}
+            <div class="mnp-why-us-rows"><a href="{% url 'mtg:tour_info' tour.id tour.slug_title %}" style="color: #9e9e9e;">{{tour.title}}</a></div>
+          {% endfor %}
+        </div>
+
+    </div>
+    </div>
+
+    <div class="mnp-tour-description-right-MV">
+
+        <div class="mnp-contact-us">
+          <center>
+            <h2> DO YOU HAVE ANY QUESTION? </h2>
+            <p style="color: #9e9e9e;"> Do not hesitate to contact us for further assistance</p>
+            <div style="margin: 40px;"><img src="/static/images/call-icon.png" height="20px" width="20px" onerror="this.onerror=null;"> +258 82 035 89 67</div>
+            <div style="margin: 40px;"><img src="/static/images/w-logo.png" height="20px" width="20px" onerror="this.onerror=null;"> +258 82 035 89 67</div>
+            <div style="margin: 40px;"><img src="/static/images/email-icon.png" height="20px" width="20px" onerror="this.onerror=null;">info@maputotours.net</div>
+          </center>
+
+        </div>
+      <h3 style="margin: 0px; padding: 0px;">More Tours</h3>
+          <div class="ti-more-tours">
+            {% for tour in not_similar_tours_list %}
+              <div class="ti-other-tours">
+              <a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="text-decoration: none; color: #9e9e9e;">
+                <!-- <div class="mnp-other-tours" id="first-other-tour"></div>
+                <center><div> Maputo Art & Architecture Walking Tour</div></center> -->
+                <div><img src="{{tour.image.url}}" width="100%" height="100%"></div>
+                <center><div>{{tour.title}}</div></center>
+              </a>
+            </div>
+            {% empty %}
+              <p>No other tours added!</p>
+            {% endfor %}
+          </div>
+
+    </div>
+</div>
+
+</div>
+
+
+{% endblock content %}

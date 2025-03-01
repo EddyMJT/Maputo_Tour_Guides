@@ -1,6 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
+from .forms import TourForm
+
+
+def check_is_superuser(request):
+    if not request.user.is_superuser:
+        raise Http404
 
 
 def home(request):
@@ -9,11 +16,6 @@ def home(request):
 
 def about_us(request):
     return render(request, "tours/about_us.html", {})
-
-
-def check_is_superuser(request):
-    if not request.user.is_superuser:
-        raise Http404
 
 
 def remove_guide(request, guide_id):
@@ -32,8 +34,19 @@ def guide_bio(request, guide_id):
     return render(request, "tours/guide_bio.html", {})
 
 
+@login_required
 def new_tour(request):
-    return render(request, "tours/new_tour.html", {})
+
+    check_is_superuser(request)
+    if request.method != "POST":
+        form = TourForm()
+    else:
+        form = TourForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("tours:our_tours"))
+    context = {"form": form}
+    return render(request, "tours/new_tour.html", context)
 
 
 def edit_tour(request, tour_id):
