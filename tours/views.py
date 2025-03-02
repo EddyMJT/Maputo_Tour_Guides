@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from .forms import TourForm
+from .models import Tour
 
 
 def check_is_superuser(request):
@@ -11,7 +12,16 @@ def check_is_superuser(request):
 
 
 def home(request):
-    return render(request, "tours/home.html", {})
+    tours = Tour.objects.all()
+    """Creating three lists with different tours and a review list to display on the home page """
+    fd_tours_list = home_fd_tours(tours)
+    walking_tours_list = home_walking_tours(tours)
+    on_wheels_tours_list = home_wheels_tours(tours)
+    reviews_list = home_reviews()  # Get three random reviews to display on the home page
+
+    context = {'tours': tours, 'reviews_list': reviews_list, 'fd_tours_list': fd_tours_list,
+               'walking_tours_list': walking_tours_list, 'on_wheels_tours_list': on_wheels_tours_list}
+    return render(request, 'tours/home.html', context)
 
 
 def about_us(request):
