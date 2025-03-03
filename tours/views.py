@@ -1,9 +1,12 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from .forms import TourForm
-from .models import Tour
+from .models import Tour, Photo
+import random
+from django.utils.text import slugify
 
 
 def check_is_superuser(request):
@@ -59,8 +62,20 @@ def new_tour(request):
     return render(request, "tours/new_tour.html", context)
 
 
+@login_required
 def edit_tour(request, tour_id):
-    return render(request, "tours/edit_tour.html", {})
+
+    check_is_superuser(request)
+    tour = Tour.objects.get(id=tour_id)
+    if request.method != "POST":
+        form = TourForm(instance=tour)
+    else:
+        form = TourForm(request.POST, request.FILES, instance=tour)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("tours:tour_info", args=[tour_id, tour.slug_title]))
+    context = {"tour": tour, "form": form}
+    return render(request, "tours/edit_tour.html", context)
 
 
 def home_reviews():
@@ -106,28 +121,63 @@ def home_wheels_tours(tours):
     return on_wheels_tours_list
 
 
-def our_tours(request):
-    return render(request, "tours/our_tours.html", {})
+def our_tours(tour_category):
+    tours = Tour.objects.all()
+    safari_tour_list = []
+    subcategory_list = []
+    for tour in tours:
+        """Creates a List of Tours that are of the same category"""
+        if tour.category == tour_category:
+            safari_tour_list.append(tour)
+            subcategory_list.append(tour.subcategory)
+    if len(subcategory_list) >= 1:
+        final_subcategory_list = [subcategory_list[0]]
+    else:
+
+        final_subcategory_list = ["No {} Added  Yet".format(tour_category)]
+
+    for category in subcategory_list:
+        counter = 0
+        for i in range(len(final_subcategory_list)):
+            if category == final_subcategory_list[i]:
+                counter += 1
+        if counter < 1:
+            final_subcategory_list.append(category)
+
+    context = {"safari_tour_list": safari_tour_list, "subcategory_list": final_subcategory_list, "tours": tours,
+               "category": tour_category}
+    return context
 
 
 def safari(request):
-    return render(request, 'tours/our_tours.html', {})
+    """Renders The Safari page"""
+    category = "Safaris"
+    context = our_tours(category)
+    return render(request, 'tours/our_tours.html', context)
 
 
 def beach_tours(request):
-    return render(request, 'tours/our_tours.html', {})
+    category = "Beach Tours"
+    context = our_tours(category)
+    return render(request, 'tours/our_tours.html', context)
 
 
 def city_tours(request):
-    return render(request, 'tours/our_tours.html', {})
+    category = "City Tours"
+    context = our_tours(category)
+    return render(request, 'tours/our_tours.html', context)
 
 
 def cultural_tours(request):
-    return render(request, 'tours/our_tours.html', {})
+    category = "Cultural Tours"
+    context = our_tours(category)
+    return render(request, 'tours/our_tours.html', context)
 
 
 def transfers(request):
-    return render(request, 'tours/our_tours.html', {})
+    category = "Transfers"
+    context = our_tours(category)
+    return render(request, 'tours/our_tours.html', context)
 
 
 def add_photos(request, tour_title, tour_id):
@@ -143,14 +193,51 @@ def photo(request, photo_id):
 
 
 def tour_photos(request, tour_id, tour_title):
-    return render(request, "tours/tour_photos.html", {})
+    """Renders and displays the page with photos of a specific tour."""
+
+    tour = Tour.objects.get(id=tour_id)
+    photos = Photo.objects.all()
+
+    context = {"tour": tour, "photos": photos}
+    return render(request, "tours/tour_photos.html", context)
 
 
 def tour_info(request, tour_id, tour_title):
-    return render(request, "tours/tour_info.html", {})
+
+    tour = Tour.objects.get(id=tour_id)
+    tour_title = slugify(tour.title)
+    tours = Tour.objects.all()
+    similar_tours_list = []
+    not_similar_tours_list = []
+    other_tour = tour.category
+    size_flag = False
+    # Choose a random list of Other tours
+    while other_tour == tour.category and size_flag == False:
+        if len(tours) >= 2:
+            index = random.randint(1, len(tours) - 1)
+            more_tour = tours[index]
+            if more_tour.category != tour.category:
+                other_tour = more_tour.category
+        else:
+            size_flag = True
+
+    for tours_element in tours:
+        if tours_element.category == tour.category:
+            similar_tours_list.append(tours_element)
+        elif tours_element.category == other_tour:
+            not_similar_tours_list.append(tours_element)
+
+    context = {"tour": tour, "similar_tours_list": similar_tours_list, "not_similar_tours_list": not_similar_tours_list,
+               "tour_title": tour_title}
+    return render(request, "tours/tour_info.html", context)
 
 
 def delete_tour(request, tour_id):
+
+
+    check_is_superuser(request)
+    tour = Tour.objects.get(id=tour_id)
+    tour.delete()
     return HttpResponseRedirect(reverse("tours:our_tours"))
 
 

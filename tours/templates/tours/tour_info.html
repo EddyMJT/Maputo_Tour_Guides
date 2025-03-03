@@ -382,7 +382,7 @@
           <div class="mnp-why-us">
           <h3>More {{tour.category}}</h3>
           {% for tour in similar_tours_list %}
-            <div class="mnp-why-us-rows"><a href="{% url 'mtg:tour_info' tour.id tour.slug_title %}" style="color: #9e9e9e;">{{tour.title}}</a></div>
+            <div class="mnp-why-us-rows"><a href="{% url 'tours:tour_info' tour.id tour.slug_title %}" style="color: #9e9e9e;">{{tour.title}}</a></div>
           {% endfor %}
         </div>
 

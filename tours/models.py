@@ -34,3 +34,12 @@ class Tour(models.Model):
     @property
     def slug_title(self):
         return slugify(self.title)
+
+
+class Photo(models.Model):
+
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='media/images/', null=False, blank=False)
+
+    def __str__(self):
+        return self.image
