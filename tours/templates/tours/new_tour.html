@@ -1,10 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "tours/base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+    {% if form.errors %}
+        <p>Errors:</p>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <form action="{% url 'tours:new_tour' %}" method="post" enctype="multipart/form-data">
+             {{ form.media }}
+            {% csrf_token %}
+            <div class="nt-header"><h1>Add Tour</h1></div>
+            <div class="nt-form-frame">
+                <!-- title -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field1"> Tour name: </label></div>
+                    <div style="flex: 5;">{{ form.title }}</div>
+                </div>
+                 <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field21"> Home Page?: </label></div>
+                    <div style="flex: 5;">{{ form.home_page}}</div>
+                </div>
+
+                <!-- Short description -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field2"> Short description: </label></div>
+                    <div style="flex: 5; height: 100%">{{ form.short_description | safe}}</div>
+                </div>
+                <!-- full description -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field3"> Full Description: </label></div>
+                    <div style="flex: 5; height: 100%;">{{ form.full_description | safe}}</div>
+                </div>
+                <!-- Category -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field4"> Tour Category: </label></div>
+                    <div style="flex: 5;">{{ form.category }}</div>
+                </div>
+                <!-- Subcategory -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field5"> Tour Subcategory: </label></div>
+                    <div style="flex: 5;">{{ form.subcategory }}</div>
+                </div>
+                <!-- Main image -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field6"> Main Image: </label></div>
+                    <div style="flex: 5;">{{ form.image }}</div>
+                </div>
+                <!-- Second image -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field7"> Second Image: </label></div>
+                    <div style="flex: 5;">{{ form.image_2 }}</div>
+                </div>
+                <!-- Third image -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field8"> Third Image: </label></div>
+                    <div style="flex: 5;">{{ form.image_3 }}</div>
+                </div>
+                <!-- Price -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field9"> Price: </label></div>
+                    <div style="flex: 5;">{{ form.price }}</div>
+                </div>
+                <!-- duration -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field10"> Duration: </label></div>
+                    <div style="flex: 5;">{{ form.duration}}</div>
+                </div>
+                <!-- Participants_ages -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field11"> Min and Max age: </label></div>
+                    <div style="flex: 5;">{{ form.participants_ages }}</div>
+                </div>
+                <!-- Pick_up location -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field12"> Pick up area: </label></div>
+                    <div style="flex: 5;">{{ form.pick_up_location }}</div>
+                </div>
+                <!-- languages -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field13"> Available Languages: </label></div>
+                    <div style="flex: 5;">{{ form.language }}</div>
+                </div>
+                <!-- Starting Time -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field14"> Starting Time: </label></div>
+                    <div style="flex: 5;">{{ form.start_time }}</div>
+                </div>
+                <!--Included  -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field15"> Included: </label></div>
+                    <div style="flex: 5; height: 100%;">{{ form.included | safe}}</div>
+                </div>
+                <!-- Excluded -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field16"> Expected: </label></div>
+                    <div style="flex: 5;height: 100%;">{{ form.expected | safe}}</div>
+                </div>
+                <!-- Accessibility -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field17"> Accessibility: </label></div>
+                    <div style="flex: 5;">{{ form.accessibility }}</div>
+                </div>
+                <!-- additional_info -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field18"> Additional Info: </label></div>
+                    <div style="flex: 5;height: 100%;">{{ form.additional_info |safe }}</div>
+                </div>
+                <!-- Cancellation Policy -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field19"> Cancellation Policy: </label></div>
+                    <div style="flex: 5;height: 100%;">{{ form.cancellation_policy | safe }}</div>
+                </div>
+                <!-- FAQ -->
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label for="id_field20"> FAQ: </label></div>
+                    <div style="flex: 5;height: 100%;">{{ form.FAQ | safe }}</div>
+                </div>
+
+
+                <div class="nt-submit-btn">
+                    <button name="submit" type="submit">Add tour</button>
+                </div>
+            </div>
+
+        </form>
+    {% endif %}
+
+{% endblock content %}
