@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
-from .forms import TourForm
-from .models import Tour, Photo
+from .forms import TourForm, ReviewForm
+from .models import Tour, Photo, Review
 import random
 from django.utils.text import slugify
 
@@ -79,8 +79,33 @@ def edit_tour(request, tour_id):
 
 
 def home_reviews():
-    review_list = ["No reviews available yet!"]
+    """Generates a List with Three Random Reviews to display on the home page."""
+
+    reviews = Review.objects.all()
+    review_list = []
+    if len(reviews) > 3:
+        "If there are more than three review, pick any three"
+        review = reviews[random.randint(0, len(reviews) - 1)]
+        review_list = [review]
+        counter = 1
+        while counter < 3:
+            review = reviews[random.randint(0, len(reviews) - 1)]
+            review_counter = 0
+            for index in range(len(review_list) - 1):
+                if review == review_list[index]:
+                    review_counter += 1
+            if review_counter < 1:
+                review_list.append(review)
+                counter += 1
+    elif len(reviews) > 0:
+        "If there are less than 3 reviews, use all available reviews"
+        for review in reviews:
+            review_list.append(review)
+    else:
+        review_list = ["No reviews available yet!"]
+
     return review_list
+
 
 
 def home_fd_tours(tours):
@@ -234,7 +259,6 @@ def tour_info(request, tour_id, tour_title):
 
 def delete_tour(request, tour_id):
 
-
     check_is_superuser(request)
     tour = Tour.objects.get(id=tour_id)
     tour.delete()
@@ -246,15 +270,46 @@ def gallery(request):
 
 
 def reviews(request):
-    return render(request, 'tours/reviews.html', {})
+    """Renders and displays reviews..."""
+
+    reviews = Review.objects.all()
+    context = {'reviews': reviews}
+    return render(request, 'tours/reviews.html', context)
 
 
+
+@login_required()
 def delete_review(request, review_id):
+    """Deletes an individual review of a tour."""
+
+    check_is_superuser(request)
+    review = Review.objects.get(id=review_id)
+    review.delete()
+    #reviews(request)
     return HttpResponseRedirect(reverse("tours:reviews"))
+    #reviews = Review.objects.all()
+    #context = {'reviews': reviews}
+    #return render(request, 'tours/reviews.html', context)
 
 
+@login_required()
 def new_review(request, tour_id, tour_title):
-    return render(request, "tours/new_review.html", {})
+
+    check_is_superuser(request)
+    tour = Tour.objects.get(id=tour_id)
+    if request.method != "POST":
+        form = ReviewForm()
+    else:
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_review = form.save(commit=False)
+            new_review.tour = tour
+            new_review.save()
+            return HttpResponseRedirect(reverse("tours:reviews"))
+
+    context = {"form": form, 'tour': tour}
+    return render(request, "tours/new_review.html", context)
+
 
 
 def success(request):

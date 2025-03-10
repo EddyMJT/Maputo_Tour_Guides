@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+    <form action="{% url 'tours:new_review' tour.id tour.slug_title %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.safe}}
+        {{form.media}}
+
+        <div class="nt-header"><h1>Add Review</h1></div>
+        <div class="nt-form-frame">
+            <!-- title -->
+            <div class="nt-form-row">
+                <div style="flex: 1;"><label for="id_field1"> Review Title: </label></div>
+                <div style="flex: 5;">{{ form.title }}</div>
+            </div>
+
+
+            <!-- text -->
+            <div class="nt-form-row">
+                <div style="flex: 1;"><label for="id_field2"> Enter Text here: </label></div>
+                <div style="flex: 5;height: 100%;">{{ form.text }}</div>
+            </div>
+            <!-- Name -->
+            <div class="nt-form-row">
+                <div style="flex: 1;"><label for="id_field3"> Your Name: </label></div>
+                <div style="flex: 5;">{{ form.reviewer_name }}</div>
+            </div>
+
+            <!-- Image -->
+            <div class="nt-form-row">
+                <div style="flex: 1;"><label for="id_field4"> Your Photo: </label></div>
+                <div style="flex: 5;">{{ form.reviewer_image }}</div>
+            </div>
+            <div style="padding: 60px;"><button name="submit" type="submit">Add Review Here</button></div>
+        </div>
+    </form>
+
+{% endblock content %}

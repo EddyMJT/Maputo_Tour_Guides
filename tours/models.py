@@ -36,6 +36,19 @@ class Tour(models.Model):
         return slugify(self.title)
 
 
+class Review(models.Model):
+
+    title = models.CharField(max_length=200)
+    text = QuillField(blank=True, null=True)
+    reviewer_image = models.ImageField(upload_to='media/images/', null=True, blank=True, default='static/images/female_review.png')
+    reviewer_name = models.CharField(max_length=200)
+    date_added = models.DateTimeField(auto_now_add=True)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
 class Photo(models.Model):
 
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
