@@ -285,11 +285,7 @@ def delete_review(request, review_id):
     check_is_superuser(request)
     review = Review.objects.get(id=review_id)
     review.delete()
-    #reviews(request)
     return HttpResponseRedirect(reverse("tours:reviews"))
-    #reviews = Review.objects.all()
-    #context = {'reviews': reviews}
-    #return render(request, 'tours/reviews.html', context)
 
 
 @login_required()
