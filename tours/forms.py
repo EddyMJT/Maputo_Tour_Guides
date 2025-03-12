@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tour, Review
+from .models import Tour, Review, Guide
 
 
 class TourForm(forms.ModelForm):
@@ -43,6 +43,15 @@ class TourForm(forms.ModelForm):
         fields = ["title", "home_page", "short_description", "full_description", "category", "subcategory", "image", "image_2", "image_3",
                   "price", "duration", "participants_ages", "pick_up_location", "language", "start_time", "included", "expected",
                   "accessibility", "additional_info", "cancellation_policy", "FAQ", ]
+
+class GuideForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Guide
+        fields = ["name", "short_description", "full_description", "image", ]
+
+
 
 
 class ReviewForm(forms.ModelForm):

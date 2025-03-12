@@ -49,6 +49,18 @@ class Review(models.Model):
         return self.title
 
 
+class Guide(models.Model):
+
+    name = models.CharField(max_length=200)
+    short_description = models.CharField(max_length=200)
+    full_description = QuillField(blank=True, null=True)
+    image = models.ImageField(upload_to='media/images/', null=True, blank=True, default='static/images/female_review.png')
+
+    def __str__(self):
+        return self.name
+
+
+
 class Photo(models.Model):
 
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)

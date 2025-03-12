@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
-from .forms import TourForm, ReviewForm
-from .models import Tour, Photo, Review
+from .forms import TourForm, ReviewForm, GuideForm
+from .models import Tour, Photo, Review, Guide
 import random
 from django.utils.text import slugify
 
@@ -28,23 +28,61 @@ def home(request):
 
 
 def about_us(request):
-    return render(request, "tours/about_us.html", {})
+
+    guides = Guide.objects.all()
+    reviews_list = home_reviews()
+    context = {'guides': guides, 'reviews_list': reviews_list}
+    return render(request, 'tours/about_us.html', context)
 
 
+@login_required()
 def remove_guide(request, guide_id):
+    """Removes the info about a guide from the database."""
+    guide = Guide.objects.get(id=guide_id)
+    guide.delete()
+    check_is_superuser(request)
     return HttpResponseRedirect(reverse("tours:about_us"))
 
 
+@login_required()
 def edit_guide_info(request, guide_id):
-    return render(request, "tours/edit_guide_info.html", {})
+    """Edits the info about a guide in the database."""
+    guide = Guide.objects.get(id=guide_id)
+    check_is_superuser(request)
+    if request.method != "POST":
+        form = GuideForm(instance=guide)
+    else:
+        form = GuideForm(request.POST, request.FILES, instance=guide)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("tours:guide_bio", args=[guide_id]))
+    context = {"guide": guide, "form": form}
+    return render(request, "tours/edit_guide_info.html", context)
 
 
+
+@login_required()
 def add_guide(request):
-    return render(request, "tours/add_guide.html", {})
+
+    check_is_superuser(request)
+
+    if request.method != "POST":
+        form = GuideForm()
+    else:
+        form = GuideForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("tours:about_us"))
+    context = {"form": form}
+    return render(request, "tours/add_guide.html", context)
 
 
 def guide_bio(request, guide_id):
-    return render(request, "tours/guide_bio.html", {})
+    """Renders the guides biography page."""
+
+    guide = Guide.objects.get(id=guide_id)
+    context = {"guide": guide}
+    return render(request, "tours/guide_bio.html", context)
 
 
 @login_required

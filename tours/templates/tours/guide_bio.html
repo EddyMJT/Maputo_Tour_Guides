@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+<div style="background-image: url('{{guide.image.url}}'); width: 100%; height: 100%; padding-top: 120px; ">
+<center>
+    <div class="gb-info-window">
+        <img src="{{guide.image.url}}" class="tg-image">
+        <div class="tg-info"><h3>{{guide.name}} | {{guide.short_description}}
+            {% if user.is_superuser%}
+                <small><a href="{% url 'tours:edit_guide_info' guide.id %}">edit info</a> | <a href="{% url 'tours:remove_guide' guide.id %}">Remove guide</a> </small>
+            {% endif %}
+        </h3></div>
+        <div style="border-bottom-style: solid; border-bottom-color: orange; border-bottom-width: 4px; margin: 30px;margin-left:100px; margin-right: 100px;"></div>
+        <div>{{guide.full_description.html|safe}}</div>
+    </div>
+
+</center>
+</div>
+
+{% endblock content %}
+
+
+}
