@@ -261,8 +261,14 @@ def add_photos(request, tour_title, tour_id):
     return render(request, "tours/add_photos.html", context)
 
 
+@login_required()
 def delete_photo(request, photo_id):
-    return HttpResponseRedirect(reverse("tours:tour_photos"))
+
+    check_is_superuser(request)
+    photo = Photo.objects.get(id=photo_id)
+    tour = photo.tour
+    photo.delete()
+    return HttpResponseRedirect(reverse("tours:tour_photos", args=[tour.id, tour.slug_title]))
 
 
 def photo(request, photo_id):
