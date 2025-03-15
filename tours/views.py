@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from .forms import TourForm, ReviewForm, GuideForm
-from .models import Tour, Photo, Review, Guide
+from .models import Tour, Photo, Review, Guide, Gallery
 import random
 from django.utils.text import slugify
 
@@ -304,15 +304,11 @@ def delete_tour(request, tour_id):
 
 
 def gallery(request):
-    return render(request, 'tours/gallery.html', {})
 
-
-def reviews(request):
-    """Renders and displays reviews..."""
-
-    reviews = Review.objects.all()
-    context = {'reviews': reviews}
-    return render(request, 'tours/reviews.html', context)
+    images = Gallery.objects.all()
+    tours = Tour.objects.all()
+    context = {'images': images, 'tours': tours}
+    return render(request, 'tours/gallery.html', context)
 
 
 
@@ -324,6 +320,14 @@ def delete_review(request, review_id):
     review = Review.objects.get(id=review_id)
     review.delete()
     return HttpResponseRedirect(reverse("tours:reviews"))
+
+
+def reviews(request):
+    """Renders and displays reviews..."""
+
+    reviews = Review.objects.all()
+    context = {'reviews': reviews}
+    return render(request, 'tours/reviews.html', context)
 
 
 @login_required()
@@ -352,4 +356,5 @@ def success(request):
 
 def contacts(request):
     return render(request, 'tours/contacts.html')
+
 

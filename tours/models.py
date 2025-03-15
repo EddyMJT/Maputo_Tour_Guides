@@ -36,6 +36,19 @@ class Tour(models.Model):
         return slugify(self.title)
 
 
+class Gallery(models.Model):
+
+    photo_title = models.CharField(max_length=200)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    image = models.ImageField()
+
+    class Meta:
+        verbose_name_plural = 'Gallery'
+
+    def __str__(self):
+        return self.photo_title
+
+
 class Review(models.Model):
 
     title = models.CharField(max_length=200)
