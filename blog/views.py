@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TopicForm
 
 def blog(request):
+    """Main page of blog. Shows all blog posts"""
 
     topics = Topic.objects.all()
     context = {'topics': topics}
@@ -13,7 +14,13 @@ def blog(request):
 
 
 def topic(request, topic_id, topic_title):
-    return render(request, 'blog/topic.html', {})
+    """Renders all posts of a given topic"""
+
+    topic = Topic.objects.get(id=topic_id)
+    entries = topic.entry_set.order_by('-date_added')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'blog/topic.html', context)
+
 
 
 def topic_entry(request, topic_id, entry_id, entry_title):
