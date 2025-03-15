@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="at-panel">
+    <div class="at-panel-title"><h1>Add New Topic: </h1></div>
+    <!-- form -->
+    <form action="{% url 'blog:new_topic' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+
+        <div class="at-field">
+            <div class="at-field-name"><label>Name: </label></div>
+            <div class="at-field-descr">{{form.title}}</div>
+        </div>
+        <div class="at-field">
+            <div class="at-field-name"><label>image: </label></div>
+            <div class="at-field-descr">{{form.image}}</div>
+        </div>
+         <button name="submit" type="submit" style="margin-top: 40px;">Add</button>
+    </form>
+</div>
+
+{% endblock content %}

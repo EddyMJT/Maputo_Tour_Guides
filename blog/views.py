@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from .models import Topic
+from django.contrib.auth.decorators import login_required
+from .forms import TopicForm
 
 def blog(request):
-    return render(request, 'blog/blog.html', {})
+
+    topics = Topic.objects.all()
+    context = {'topics': topics}
+    return render(request, 'blog/blog.html', context)
 
 
 def topic(request, topic_id, topic_title):
@@ -15,8 +20,23 @@ def topic_entry(request, topic_id, entry_id, entry_title):
     return render(request, 'blog/topic_entry.html', {})
 
 
+@login_required()
 def new_topic(request):
-    return render(request, 'blog/new_topic.html', {})
+    """Allows User to Enter New Topic"""
+
+    if request.method != "POST":
+        form = TopicForm()
+    else:
+        form = TopicForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
+
+        return HttpResponseRedirect(reverse("blog:blog"))
+    context = {"form": form}
+    return render(request, 'blog/new_topic.html', context)
+
 
 
 def edit_topic(request, topic_id):
