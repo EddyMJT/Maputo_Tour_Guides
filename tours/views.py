@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
-from .forms import TourForm, ReviewForm, GuideForm
+from .forms import TourForm, ReviewForm, GuideForm, PhotoForm
 from .models import Tour, Photo, Review, Guide, Gallery
 import random
 from django.utils.text import slugify
@@ -243,8 +243,22 @@ def transfers(request):
     return render(request, 'tours/our_tours.html', context)
 
 
+@login_required()
 def add_photos(request, tour_title, tour_id):
-    return render(request, "tours/add_photos.html", {})
+    tour = Tour.objects.get(id=tour_id)
+    check_is_superuser(request)
+    if request.method != "POST":
+        form = PhotoForm()
+    else:
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_photo = form.save(commit=False)
+            new_photo.tour = tour
+            new_photo.save()
+            return HttpResponseRedirect(reverse("tours:add_photos", args=[tour_title, tour.id]))
+
+    context = {"form": form, "tour": tour}
+    return render(request, "tours/add_photos.html", context)
 
 
 def delete_photo(request, photo_id):
