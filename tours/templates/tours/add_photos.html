@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "tours/base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <div class="ap-header"><h1>Add Photo Here</h1></div>
+    <div class="ap-panel">
+        <center>
+            <form action="{% url 'tours:add_photos' tour.slug_title tour.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.media}}
+
+                <div style="margin-top: 200px;"><center>{{form.image}}</center></div>
+                <center><button name="submit" type="submit">add</button></center>
+            </form>
+
+        </center>
+    </div>
+
+
+
+{% endblock content %}

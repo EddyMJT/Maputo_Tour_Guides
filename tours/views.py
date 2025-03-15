@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
-from .forms import TourForm, ReviewForm, GuideForm
+from .forms import TourForm, ReviewForm, GuideForm, PhotoForm
 from .models import Tour, Photo, Review, Guide, Gallery
 import random
 from django.utils.text import slugify
@@ -243,16 +243,41 @@ def transfers(request):
     return render(request, 'tours/our_tours.html', context)
 
 
+@login_required()
 def add_photos(request, tour_title, tour_id):
-    return render(request, "tours/add_photos.html", {})
+    tour = Tour.objects.get(id=tour_id)
+    check_is_superuser(request)
+    if request.method != "POST":
+        form = PhotoForm()
+    else:
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_photo = form.save(commit=False)
+            new_photo.tour = tour
+            new_photo.save()
+            return HttpResponseRedirect(reverse("tours:add_photos", args=[tour_title, tour.id]))
+
+    context = {"form": form, "tour": tour}
+    return render(request, "tours/add_photos.html", context)
 
 
+@login_required()
 def delete_photo(request, photo_id):
-    return HttpResponseRedirect(reverse("tours:tour_photos"))
+
+    check_is_superuser(request)
+    photo = Photo.objects.get(id=photo_id)
+    tour = photo.tour
+    photo.delete()
+    return HttpResponseRedirect(reverse("tours:tour_photos", args=[tour.id, tour.slug_title]))
 
 
 def photo(request, photo_id):
-    return render(request, "tours/photo.html", {})
+    """Displays one photo at a time."""
+    photo = Photo.objects.get(id=photo_id)
+    photos = Photo.objects.all()
+    tour = photo.tour
+    context = {"photo": photo, "tour": tour, "photos": photos}
+    return render(request, "tours/photo.html", context)
 
 
 def tour_photos(request, tour_id, tour_title):
