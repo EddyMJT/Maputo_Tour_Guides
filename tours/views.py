@@ -266,7 +266,12 @@ def delete_photo(request, photo_id):
 
 
 def photo(request, photo_id):
-    return render(request, "tours/photo.html", {})
+    """Displays one photo at a time."""
+    photo = Photo.objects.get(id=photo_id)
+    photos = Photo.objects.all()
+    tour = photo.tour
+    context = {"photo": photo, "tour": tour, "photos": photos}
+    return render(request, "tours/photo.html", context)
 
 
 def tour_photos(request, tour_id, tour_title):
