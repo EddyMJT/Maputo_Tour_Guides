@@ -1,10 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends 'tours/base.html' %}
+
+{% block content %}
+
+<div class="te-container"> <!-- Container with white Background! -->
+
+    <!-- Header Section(Topic and Entry Title)-->
+    <center><h1>Topic: {{ topic }}</h1></center>
+    <div class="te-topic-title-separator"></div>
+    <div class="te-topic-entry-separator">
+        <div class="entry-title"><h1>Title: {{ entry }} </h1></div>
+        <div style="padding-top: 40px;">
+            <small> Last updated: {{ entry.date_added }} | Posted by: {{ topic.owner }} |
+                {% if user.is_superuser or user == topic.owner %}
+                    <a href="{% url 'blog:edit_topic_entry' entry.id %}">edit</a> |
+                    <a href="{% url 'blog:delete_topic_entry' entry.id %}">delete entry</a> |
+                {% endif %}
+                <a href="{% url 'blog:topic' topic.id topic.slug_title %}">Return</a>
+            </small>
+        </div>
+    </div>
+    <!-- end of Header Secition -->
+    <!-- Text and image Section Desktop version-->
+    <div class="te-entry-image-section">
+
+        <div class="te-entry-section">
+            {{ entry.text.html | safe}}
+        </div>
+
+       <!-- image and Similar Tours Block -->
+
+        <div class="te-image-section">
+            <div style="border-style: solid; border-color: lightgray;"><img src="{{ entry.image.url }}" height="100%" width="100%"></div>
+            <div style="display: flex; flex-direction: column; margin-top: 60px;">
+                <div style="margin-bottom: 10px;"><h1>Related Posts...</h1></div>
+                {% for entry_item in entries %}
+                    {% if entry_item.topic == topic and entry_item.title != entry.title %}
+                        <div style="color: #666666; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: gray; padding-bottom: 10px; padding-top: 10px;">
+                            <a href="{% url 'blog:topic_entry' topic.id entry.id entry.slug_title  %}" style="color: #666666; text-decoration: none;">{{entry_item.title}}</a></div>
+                    {% endif %}
+                {% empty %}
+                    <div>There Are no similar Posts to this Post!</div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+     <!-- More Blog Posts Section -->
+
+
+    <!-- Text and image Section Mobile Version-->
+    <div class="te-entry-image-section-MV">
+
+        <!-- image -->
+        <div class="te-image-section">
+            <div style="border-style: solid; border-color: lightgray;">
+                <img src="{{ entry.image.url }}" height="100%" width="100%">
+            </div>
+        </div>
+        <!--Entry text -->
+        <div class="te-entry-section">
+            {{ entry.text | safe}}
+        </div>
+        <div style="display: flex; flex-direction: column; margin-top: 60px; margin-bottom: 60px;" >
+                <div style="margin-bottom: 10px;"><h1>Related Posts...</h1></div>
+                {% for entry_item in entries %}
+                    {% if entry_item.topic == topic and entry_item.title != entry.title %}
+                        <div style="color: #666666; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: gray; padding-bottom: 10px; padding-top: 10px;">
+                            <a href="{% url 'blog:topic_entry' topic.id entry.id entry.slug_title  %}" style="color: #666666; text-decoration: none;">{{entry_item.title}}</a></div>
+                    {% endif %}
+                {% empty %}
+                    <div>There Are no similar Posts to this Post!</div>
+                {% endfor %}
+            </div>
+    </div>
+
+
+    <div class="more-blog-posts-section">
+
+        {% for topic in topics %}
+        <ul>
+            <li><div style="margin: 20px;"><a href="{% url 'blog:topic' topic.id topic.slug_title %}">{{topic}}</a></div></li>
+            {% for entry in entries %}
+                {% if entry.topic == topic %}
+                    <a href="{% url 'blog:topic_entry' topic.id entry.id entry.slug_title %}" style="margin: 20px;">- {{entry.title}}</a>
+                {% endif %}
+            {% empty %}
+                No Posts for This Topic Yet.
+            {% endfor %}
+        </ul>
+        {% empty %}
+            No Topics added Yet
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+
