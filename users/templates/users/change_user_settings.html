@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<b>Users Page</b>
-</body>
-</html>
+{% extends "tours/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>Errors:</p>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <form action="{% url 'users:edit_settings' user.id %}" method="post">
+            {% csrf_token %}
+            <div class="nt-header"><h1>Edit User Settings</h1></div>
+            <div class="nt-form-frame">
+                <div class="nt-form-row">
+                    <div style="flex: 1;"><label> {{user}}: </label></div>
+                    <div style="flex: 5;">{{form.is_approved}}</div>
+                </div>
+
+                <div class="nt-submit-btn">
+                    <button name="submit" type="submit">edit</button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock content %}

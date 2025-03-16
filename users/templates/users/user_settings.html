@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "tours/base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="settings-container">
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles %}
+                <tr class="{% cycle 'row-white' 'row-gray' %}">
+                    <td>
+                        <a href="{% url 'users:edit_settings' profile.id %}">
+                            {{ profile }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if profile.is_approved %}
+                            APPROVED
+                        {% else %}
+                            NOT APPROVED
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
