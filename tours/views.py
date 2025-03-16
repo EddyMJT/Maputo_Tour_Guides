@@ -1,12 +1,15 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from .forms import TourForm, ReviewForm, GuideForm, PhotoForm
 from .models import Tour, Photo, Review, Guide, Gallery
 import random
 from django.utils.text import slugify
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 
 def check_is_superuser(request):
@@ -376,10 +379,31 @@ def new_review(request, tour_id, tour_title):
 
 
 def success(request):
+
     return render(request, 'tours/success.html')
 
 
 def contacts(request):
-    return render(request, 'tours/contacts.html')
 
+    if request.method == "POST":
+
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+
+        # If all fields are filled in, proceed with sending the mail
+        if name and email and message:
+            try:
+                send_mail(
+                    f'New message from {name}',
+                    f'You received a message from {name} ({email}):\n\n{message}',
+                    email, [settings.DEFAULT_FROM_EMAIL],
+                    fail_silently=False,
+                )
+
+                return redirect("tours:success")
+            except Exception as e:
+                return HttpResponseRedirect(f"An error occurred: {e}")
+
+    return render(request, 'tours/contacts.html')
 

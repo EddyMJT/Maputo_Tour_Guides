@@ -1,20 +1,38 @@
-import os.path
 from pathlib import Path
+import os.path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from decouple import config, Csv
+
+
+from django.conf.global_settings import EMAIL_HOST_PASSWORD
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nxi%m5-yp#@!58az057qj6vckic@(vn4-6!+!8uo^f05lq%f(b'
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='dsadadasdadsadasdsa')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = []
+
+
+
+# SMTP email configuration for Gmail SMTP
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# End of email configuration
+
 
 
 # Application definition
@@ -27,14 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Third parties apps
-    'bootstrap3',
-    'django_quill',
-
     # My apps
     'tours',
-    'users',
     'blog',
+    'users',
+
+    # Thrid part Apps
+    'bootstrap3',
+    'django_quill',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +87,7 @@ WSGI_APPLICATION = 'maputo_tour_guides.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -80,7 +98,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -99,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -111,19 +129,28 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'tours', 'static'),
+    os.path.join(BASE_DIR, 'mtg', 'static'),
 ]
+LOGIN_URL = '/users/login/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 
+#Django-Bootstrap3 Configurations
+
+BOOTSTRAP3 = {
+
+    'include_jquery': True,
+
+}
+
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
