@@ -1,3 +1,38 @@
 from django.db import models
+from django_quill.fields import QuillField
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 
-# Create your models here.
+
+class Topic(models.Model):
+
+    title = models.CharField(max_length=200)
+    date_added = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='media/images/', null=True, blank=True, default='static/images/mts.jpg')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def slug_title(self):
+        return slugify(self.title)
+
+
+class Entry(models.Model):
+
+    title = models.CharField(max_length=200)
+    text = QuillField(blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='media/images/', null=True, blank=True, default='static/images/mts.jpg')
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def slug_title(self):
+        return slugify(self.title)

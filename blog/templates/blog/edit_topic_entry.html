@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tours/base.html' %}
 
-</body>
-</html>
+
+
+{% block content %}
+    <div class="nte-panel">
+        <div class="nte-panel-title"><h1>Edit your entry Here!</h1></div>
+        <form action="{% url 'blog:edit_topic_entry' entry.id%}" method="post" enctype="multipart/form-data">
+            {{form.media}}
+            {% csrf_token %}
+           <div class="nte-field">
+                <div class="nte-field-name"><label for="id_filed1">Topic:</label></div>
+                <div class="nte-field-descr">{{ form.title }}</div>
+           </div>
+
+             <!-- Text -->
+            <div class="nte-field">
+                <div class="nte-field-name"><label for="id_filed2">Insert your text here:</label></div>
+                <div class="nte-field-descr">{{ form.text }}</div>
+            </div>
+
+             <!-- Image -->
+            <div class="nte-field">
+                <div class="nte-field-name"><label for="id_filed3">Image:</label></div>
+                <div class="nte-field-descr">{{ form.image }}</div>
+            </div>
+
+            <div style="margin-top: 40px;"><button name="submit" type="submit">Add</button></div>
+        </form>
+
+    </div>
+
+{% endblock content %}
