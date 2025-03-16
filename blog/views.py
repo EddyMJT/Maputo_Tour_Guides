@@ -133,5 +133,5 @@ def delete_topic_entry(request, entry_id):
     if topic.owner != request.user and not request.user.is_superuser:
         raise Http404
     Entry.objects.filter(id=entry_id).delete()
-    return HttpResponseRedirect(reverse("blog:topic", args=[topic.id]))
-
+    #return HttpResponseRedirect(reverse("blog:blog"))
+    return HttpResponseRedirect(reverse("blog:topic", args=[topic.id, topic.slug_title]))
