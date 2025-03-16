@@ -15,8 +15,8 @@ urlpatterns = [
     re_path(r'^(?P<topic_id>\d+)/edit_topic/$', views.edit_topic, name='edit_topic'),
     re_path(r'^(?P<topic_id>\d+)/new_entry/$', views.new_topic_entry, name='new_topic_entry'),
     re_path(r'^(?P<entry_id>\d+)/edit_post/$', views.edit_topic_entry, name='edit_topic_entry'),
-    re_path(r'^posts/(?P<topic_id>\d+)/delete/$', views.delete_topic, name='delete_topic'),
-    re_path(r'^posts/(?P<entry_id>\d+)/delete_entry/$', views.delete_topic_entry, name='delete_topic_entry'),
+    re_path(r'^topic/(?P<topic_id>\d+)/delete_topic/$', views.delete_topic, name='delete_topic'),
+    re_path(r'^(?P<entry_id>\d+)/delete_entry/$', views.delete_topic_entry, name='delete_topic_entry'),
 
 
 ]
