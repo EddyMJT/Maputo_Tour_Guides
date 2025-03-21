@@ -1,0 +1,1 @@
+web: gunicorn maputo_tour_guides.wsgi --log-file -
